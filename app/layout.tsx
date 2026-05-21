@@ -4,7 +4,8 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/app-sidebar";
+import { AppSidebar } from "@/components/sidebar/app-sidebar";
+import { AppFooter } from "@/components/app-footer";
 
 const spaceGroteskHeading = Space_Grotesk({ subsets: ['latin'], variable: '--font-heading' });
 
@@ -29,13 +30,15 @@ export default function RootLayout({
       <body className="w-dvw h-dvh">
 
         <SidebarProvider>
-          <div className="flex flex-col w-full h-full">
-            <AppSidebar />
+
+          <AppSidebar />
+          <div className="flex-1 min-h-0">
             <ThemeProvider>
               {children}
             </ThemeProvider>
-
           </div>
+          <AppFooter />
+
         </SidebarProvider>
 
 
