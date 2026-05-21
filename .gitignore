@@ -2,6 +2,7 @@
 /node_modules
 /.pnp
 .pnp.*
+.claude
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
