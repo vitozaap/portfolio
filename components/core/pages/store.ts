@@ -1,22 +1,20 @@
-import z from "zod"
 import { create } from "zustand"
+import { Item, itemSchema, Pages } from "./types"
 
 
-
-export const pagesSchema = z.enum(["README", "Contact", "About", "Skills", "Package", "Comprez", "Git"])
-export type Pages = z.infer<typeof pagesSchema>
 
 interface PagesStore {
-    currentPage: Pages
-    openedPages: Pages[]
-    changePage: (page: Pages) => void
+    currentPage: Item
+    openedPages: Item[]
+    changePage: (page: Item) => void
 }
 
+const defaultPage = itemSchema.parse({ name: "README.md", page: "README" })
 
 export const usePagesStore = create<PagesStore>((set) => ({
-    currentPage: "README",
-    openedPages: ["README"],
-    changePage: (page: Pages) => set((state) => {
+    currentPage: defaultPage,
+    openedPages: [{ name: "README.md", page: "README" }],
+    changePage: (page: Item) => set((state) => {
         const alreadyOpened = state.openedPages.includes(page)
 
         //Will insert the page to the openedPages list if not opened before 

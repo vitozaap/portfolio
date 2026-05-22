@@ -1,45 +1,55 @@
-import z from "zod";
-import { pagesSchema } from "../pages/pages-store";
-import { ReactNode } from "react";
-import { ThirdBracketSquareIcon } from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
+import { FileCodeIcon, GithubIcon, Note01Icon, NpmIcon, ReactIcon, ThirdBracketSquareIcon, Typescript01Icon } from "@hugeicons/core-free-icons"
+import { Groups, groupsSchema, Item } from "../core/pages/types"
 
 
-const itemSchema = z.object({
-    name: z.string(),
-    page: pagesSchema,
-    icon: z.custom<ReactNode>().default(<HugeiconsIcon icon={ThirdBracketSquareIcon} />).optional()
-})
-
-type Item = z.infer<typeof itemSchema>
-
-export const items: Item[] = [
+const root: Item[] = [
     {
         page: "README",
-        name: "README.md"
+        name: "README.md",
+        icon: Note01Icon
     },
     {
         page: "About",
-        name: "about.ts"
-    },
-    {
-        page: "Comprez",
-        name: "comprez.tsx"
+        name: "about.ts",
+        icon: Typescript01Icon
     },
     {
         page: "Contact",
-        name: "contact.yml"
-    },
-    {
-        page: "Git",
-        name: ".git"
+        name: "contact.yml",
+        icon: FileCodeIcon
     },
     {
         page: "Package",
-        name: "package.json"
+        name: "package.json",
+        icon: NpmIcon
     },
     {
         page: "Skills",
-        name: "skills.json"
+        name: "skills.json",
+        icon: ThirdBracketSquareIcon
     }
 ]
+
+const projects: Item[] = [{
+    page: "Comprez",
+    name: "comprez.tsx",
+    icon: ReactIcon
+}]
+
+const git: Item[] = [{
+    page: "Git",
+    name: ".git",
+    icon: GithubIcon
+}]
+
+const groupsData: Groups = [{
+    name: "/",
+    items: root
+}, {
+    name: "projects/",
+    items: projects
+}, {
+    name: ".git/",
+    items: git
+}]
+export const groups = groupsSchema.parse(groupsData) 

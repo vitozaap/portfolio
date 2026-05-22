@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/sidebar/app-sidebar";
-import { AppFooter } from "@/components/app-footer";
+import { AppFooter } from "@/components/core/app-footer";
 
 const spaceGroteskHeading = Space_Grotesk({ subsets: ['latin'], variable: '--font-heading' });
 
