@@ -22,12 +22,12 @@ export function AppSidebar() {
     return (
         <Sidebar>
             <SidebarHeader>
-                <div className="flex p-2 gap-2 w-full items-center ">
-                    <div className="flex bg-foreground p-1.25"></div> {/* The square */}
-                    <p className="text-sm font-bold">PORTFOLIO.VICTORSANTOS </p>
+                <div className="flex p-2 gap-2 w-full items-center">
+                    <div className="flex bg-foreground p-1"></div> {/* The square */}
+                    <p className="text-xs font-bold">PORTFOLIO.VICTORSANTOS </p>
                 </div>
                 <SidebarSeparator />
-                <div className="flex p-2 w-full items-center ">
+                <div className="flex p-2 w-full items-center">
                     <p className="text-xs font-bold">EXPLORER</p>
                 </div>
                 <SidebarSeparator />
