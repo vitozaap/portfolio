@@ -9,8 +9,7 @@ import { Cancel01Icon } from "@hugeicons/core-free-icons"
 
 export default function AppHeader() {
     const { openedPages, changePage, currentPage, removePage } = usePagesStore()
-
-    console.log(openedPages[0].icon)
+    console.log(openedPages)
     return (
         <SidebarHeader className="px-0!">
             <div className="flex p-2 gap-5 w-full items-center">
