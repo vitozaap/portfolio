@@ -15,7 +15,7 @@ export function AppFooter() {
                 <p>↓ 0</p>
             </div>
             <div className="flex gap-2 items-center border">
-                <HugeiconsIcon icon={currentPage.icon!} size={17} />
+                <HugeiconsIcon icon={currentPage.icon} size={17} />
                 <p>{currentPage.name.toUpperCase()}</p>
             </div>
             <div className="flex ml-auto items-center">

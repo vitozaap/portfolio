@@ -14,11 +14,11 @@ import {
 import { groups } from "./items"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { ArrowRight } from "@hugeicons/core-free-icons"
-import { usePagesStore } from "../core/pages/store"
+import { usePagesActions, usePagesStore } from "../core/pages/store"
 
 export function AppSidebar() {
     const page = usePagesStore((state) => state.currentPage.page)
-    const changePage = usePagesStore((state) => state.changePage)
+    const pagesActions = usePagesActions()
     return (
         <Sidebar>
             <SidebarHeader>
@@ -46,7 +46,7 @@ export function AppSidebar() {
                                     <SidebarMenuButton
                                         isActive={page === item.page}
 
-                                        onClick={() => changePage(item)}
+                                        onClick={() => pagesActions.changePage(item)}
                                     >
                                         <HugeiconsIcon icon={item.icon!} /> {item.name}
                                     </SidebarMenuButton>
