@@ -29,19 +29,16 @@ export default function RootLayout({
       className={cn("antialiased", fontSans.variable, "font-mono", jetbrainsMono.variable, spaceGroteskHeading.variable)}
     >
       <body className="w-dvw h-dvh">
-        <SidebarProvider>
-          <AppSidebar />
-          <div className="flex-1 min-h-0 flex flex-col">
-            <AppHeader />
-            <ThemeProvider>
+        <ThemeProvider>
+          <SidebarProvider>
+            <AppSidebar />
+            <div className="flex-1 min-h-0 flex flex-col">
+              <AppHeader />
               {children}
-            </ThemeProvider>
-          </div>
-          <AppFooter />
-
-        </SidebarProvider>
-
-
+            </div>
+            <AppFooter />
+          </SidebarProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

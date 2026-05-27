@@ -10,7 +10,7 @@ export type Pages = z.infer<typeof pagesSchema>
 export const itemSchema = z.object({
     name: z.string(),
     page: pagesSchema,
-    icon: z.custom<IconSvgElement>().default(ThirdBracketSquareIcon).optional()
+    icon: z.custom<IconSvgElement>().default(ThirdBracketSquareIcon)
 })
 
 export const groupsSchema = z.array(z.object({
