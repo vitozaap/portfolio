@@ -3,7 +3,7 @@
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Button } from "../ui/button"
 import { Separator } from "../ui/separator"
-import { SidebarHeader, SidebarSeparator } from "../ui/sidebar"
+import { SidebarHeader } from "../ui/sidebar"
 import { usePagesActions, usePagesStore } from "./pages/store"
 import { Cancel01Icon, CommandIcon } from "@hugeicons/core-free-icons"
 import { useTheme } from "next-themes"
@@ -34,7 +34,18 @@ export default function AppHeader() {
                     <p className="text-xs">LF</p>
                 </div>
                 <div className="flex text-xs items-center justify-center self-stretch -my-2" >
-                    <div className="group flex items-center gap-1 border-l-2 self-stretch px-4 -mt-2 -mb-1 cursor-pointer transition-all hover:bg-foreground hover:text-background focus-visible:ring-1 focus-visible:ring-ring/50" onClick={changeTheme} >
+                    <div
+                        role="button"
+                        tabIndex={0}
+                        className="group flex items-center gap-1 border-l-2 self-stretch px-4 -mt-2 -mb-1 cursor-pointer transition-all hover:bg-foreground hover:text-background focus-visible:ring-1 focus-visible:ring-ring/50"
+                        onClick={changeTheme}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                                e.preventDefault()
+                                changeTheme()
+                            }
+                        }}
+                    >
                         <div className="size-1.5 bg-foreground group-hover:bg-background transition-all rounded-full" ></div>
                         <p className="font-semibold tracking-wider">DARK</p>
                     </div>
@@ -55,21 +66,34 @@ export default function AppHeader() {
                         tabIndex={0}
                         data-active={currentPage.page === page.page || undefined}
                         onClick={() => pagesActions.changePage(page)}
+                        onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") {
+                                e.preventDefault()
+                                pagesActions.changePage(page)
+                            }
+                        }}
                         className="inline-flex h-full shrink-0 items-center justify-center gap-2 border-r-2 border-border bg-background px-2 text-xs font-medium whitespace-nowrap cursor-pointer select-none outline-none transition-all hover:bg-muted hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 has-[button:hover]:bg-background! data-active:bg-foreground! data-active:text-background! data-active:font-bold data-active:hover:bg-foreground! data-active:hover:text-background! data-active:has-[button:hover]:bg-foreground! data-active:has-[button:hover]:text-background!"
                     >
                         <HugeiconsIcon icon={page.icon} className="scale-60" />
                         {page.name}
-                        <Button
-                            size={"icon-xs"}
-                            variant={"ghost"}
-                            className="dark:hover:bg-background/20! hover:bg-background/20"
-                            onClick={(e) => {
-                                e.stopPropagation()
-                                pagesActions.removePage(page)
-                            }}
-                        >
-                            <HugeiconsIcon icon={Cancel01Icon} className="scale-65" />
-                        </Button>
+                        {openedPages.length > 1 && (
+                            <Button
+                                size={"icon-xs"}
+                                variant={"ghost"}
+                                className="dark:hover:bg-background/20! hover:bg-background/20"
+                                onClick={(e) => {
+                                    e.stopPropagation()
+                                    pagesActions.removePage(page)
+                                }}
+                                onKeyDown={(e) => {
+                                    if (e.key === "Enter" || e.key === " ") {
+                                        e.stopPropagation()
+                                    }
+                                }}
+                            >
+                                <HugeiconsIcon icon={Cancel01Icon} className="scale-65" />
+                            </Button>
+                        )}
                     </div>
                 ))}
             </div>

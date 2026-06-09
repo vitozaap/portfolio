@@ -1,3 +1,3 @@
 export default function Readme() {
-    return;
+    return null;
 }

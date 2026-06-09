@@ -1,5 +1,5 @@
 import { FileCodeIcon, GithubIcon, Note01Icon, NpmIcon, ReactIcon, ThirdBracketSquareIcon, Typescript01Icon } from "@hugeicons/core-free-icons"
-import { Groups, groupsSchema, Item } from "../core/pages/types"
+import { Groups, Item } from "../core/pages/types"
 
 
 const root: Item[] = [
@@ -42,7 +42,7 @@ const git: Item[] = [{
     icon: GithubIcon
 }]
 
-const groupsData: Groups = [{
+export const groups: Groups = [{
     name: "/",
     items: root
 }, {
@@ -52,4 +52,3 @@ const groupsData: Groups = [{
     name: ".git/",
     items: git
 }]
-export const groups = groupsSchema.parse(groupsData) 
