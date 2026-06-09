@@ -27,13 +27,15 @@ export const usePagesStore = create<PagesStore & { actions: PagesActions }>((set
             return { currentPage: page, openedPages: [...state.openedPages, page] }
         }),
         removePage: (page) => set((state) => {
-            if (state.openedPages.length == 1) return state
+            if (state.openedPages.length === 1) return state
 
             const idx = state.openedPages.findIndex(opened => opened.page === page.page)
             if (idx === -1) return state
             const openedPages = state.openedPages.filter((_, i) => i !== idx)
             const isCurrent = state.currentPage.page === page.page
-            const currentPage = isCurrent ? openedPages[idx] ?? openedPages[idx - 1] ?? openedPages[0] : state.currentPage
+            const currentPage = isCurrent
+                ? state.openedPages[idx + 1] ?? state.openedPages[idx - 1] ?? openedPages[0]
+                : state.currentPage
             return { openedPages, currentPage }
         })
     }

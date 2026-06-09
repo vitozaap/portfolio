@@ -7,6 +7,7 @@ import {
     SidebarGroupContent,
     SidebarGroupLabel,
     SidebarHeader,
+    SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
     SidebarSeparator,
@@ -41,17 +42,18 @@ export function AppSidebar() {
                             </div>
                         </SidebarGroupLabel>
                         <SidebarGroupContent>
-                            {group.items.map((item) => (
-                                <SidebarMenuItem key={item.page}>
-                                    <SidebarMenuButton
-                                        isActive={page === item.page}
-
-                                        onClick={() => pagesActions.changePage(item)}
-                                    >
-                                        <HugeiconsIcon icon={item.icon!} /> {item.name}
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
+                            <SidebarMenu>
+                                {group.items.map((item) => (
+                                    <SidebarMenuItem key={item.page}>
+                                        <SidebarMenuButton
+                                            isActive={page === item.page}
+                                            onClick={() => pagesActions.changePage(item)}
+                                        >
+                                            <HugeiconsIcon icon={item.icon} /> {item.name}
+                                        </SidebarMenuButton>
+                                    </SidebarMenuItem>
+                                ))}
+                            </SidebarMenu>
                         </SidebarGroupContent>
                     </SidebarGroup>))}
             </SidebarContent>
