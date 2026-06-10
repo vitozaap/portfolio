@@ -18,6 +18,8 @@ Next.js 16 (App Router, React 19) · Tailwind CSS v4 (CSS-first, configured in `
 
 Path alias `@/*` maps to the repo root (see `tsconfig.json`). Add shadcn components with `npx shadcn@latest add <name>` — they land in `components/ui`.
 
+**shadcn here is NOT built on radix-ui primitives — use base-ui (`@base-ui/react`) instead.**
+
 ## Architecture
 
 This is a portfolio site presented as a "brutalist IDE". The visual metaphor is an editor: a file-tree sidebar, a tab bar, and a content pane. **The IDE chrome is the whole app — it is NOT Next.js routing.** There is a single route (`app/page.tsx`); "pages" are an in-app concept managed by client state, not URL segments.
