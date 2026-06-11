@@ -51,3 +51,8 @@ Components subscribe narrowly with Zustand selectors and `useShallow` (from `zus
 - Tabs/clickable divs use explicit `role="button"`, `tabIndex={0}`, and `onKeyDown` Enter/Space handlers rather than native buttons — match this when adding interactive non-button elements.
 - Tailwind v4 important modifiers appear as trailing `!` (e.g. `px-0!`, `bg-foreground!`); data-state styling uses `data-active:` variants.
 - Fonts are wired as CSS variables in `app/layout.tsx` (`--font-sans`, `--font-mono`, `--font-heading`).
+
+## Git workflow
+
+- Development branches (feature, fix, refactor, chore, etc.) always branch off `develop` — never off `main`.
+- Branch names, commit messages, and PR titles/descriptions are written in English, following [Conventional Commits](https://www.conventionalcommits.org/) (e.g. `feat:`, `fix:`, `refactor:`, `chore:`).
