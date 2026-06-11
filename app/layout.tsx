@@ -40,16 +40,16 @@ export default function RootLayout({
         spaceGroteskHeading.variable
       )}
     >
-      <body className="h-dvh w-dvw">
+      <body className="flex h-dvh w-dvw flex-col">
         <ThemeProvider>
-          <SidebarProvider>
+          <SidebarProvider className="min-h-0 flex-1">
             <AppSidebar />
             <div className="flex min-h-0 flex-1 flex-col">
               <AppHeader />
               {children}
             </div>
-            <AppFooter />
           </SidebarProvider>
+          <AppFooter />
         </ThemeProvider>
       </body>
     </html>

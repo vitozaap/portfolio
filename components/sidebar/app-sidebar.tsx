@@ -76,7 +76,7 @@ export function AppSidebar() {
                   <SidebarGroupContent>
                     <SidebarMenu>
                       {group.items.map((item) => (
-                        <SidebarMenuItem key={item.page}>
+                        <SidebarMenuItem key={item.page.value}>
                           <SidebarMenuButton
                             isActive={page === item.page}
                             onClick={() => pagesActions.changePage(item)}

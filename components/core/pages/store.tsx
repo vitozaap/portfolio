@@ -1,6 +1,6 @@
 import { create } from "zustand"
 import { Item } from "./types"
-import { Note01Icon } from "@hugeicons/core-free-icons"
+import { groups } from "@/components/sidebar/items"
 
 interface PagesStore {
   currentPage: Item
@@ -11,11 +11,7 @@ interface PagesActions {
   removePage: (page: Item) => void
 }
 
-const defaultPage: Item = {
-  name: "README.md",
-  page: "README",
-  icon: Note01Icon,
-}
+export const defaultPage = groups[0].items[0]
 
 export const usePagesStore = create<PagesStore & { actions: PagesActions }>(
   (set) => ({

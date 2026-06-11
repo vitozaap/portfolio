@@ -8,38 +8,61 @@ import {
   Typescript01Icon,
 } from "@hugeicons/core-free-icons"
 import { Groups, Item } from "../core/pages/types"
+import Readme from "../core/pages/readme/readme"
+
+
+
 
 const root: Item[] = [
   {
-    page: "README",
+    page: {
+      value: "README",
+      component: <Readme />
+    },
     name: "README.md",
     icon: Note01Icon,
   },
   {
-    page: "About",
+    page: {
+      value: "About",
+      component: <></>
+    },
     name: "about.ts",
     icon: Typescript01Icon,
   },
   {
-    page: "Contact",
+    page: {
+      value: "Contact",
+      component: <></>
+    },
     name: "contact.yml",
     icon: FileCodeIcon,
   },
   {
-    page: "Package",
+    page: {
+      value: "Package",
+      component: <></>
+    },
     name: "package.json",
     icon: NpmIcon,
   },
   {
-    page: "Skills",
+    page: {
+      value: "Skills",
+      component: <></>
+    },
     name: "skills.json",
     icon: ThirdBracketSquareIcon,
   },
 ]
 
+
 const projects: Item[] = [
   {
-    page: "Comprez",
+    page: {
+      value: "Comprez",
+      component: <></>
+    },
     name: "comprez.tsx",
     icon: ReactIcon,
   },
@@ -47,7 +70,10 @@ const projects: Item[] = [
 
 const git: Item[] = [
   {
-    page: "Git",
+    page: {
+      value: "Git",
+      component: <></>
+    },
     name: ".git",
     icon: GithubIcon,
   },

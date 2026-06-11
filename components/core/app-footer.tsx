@@ -5,7 +5,7 @@ import { usePagesStore } from "./pages/store"
 export function AppFooter() {
   const currentPage = usePagesStore((state) => state.currentPage)
   return (
-    <footer className="fixed right-0 bottom-0 left-0 z-50 flex h-max items-center gap-6 bg-foreground text-xs font-bold text-primary-foreground">
+    <footer className="relative z-50 flex h-max w-full shrink-0 items-center gap-6 bg-foreground text-xs font-bold text-primary-foreground">
       <div className="flex items-center gap-3">
         <div className="flex bg-primary-foreground"></div>
         <p>MAIN</p>
