@@ -58,23 +58,23 @@ export default function AppHeader() {
         </div>
       </div>
       <div className="flex min-h-11 w-full shrink-0 items-center border-y-2">
-        {openedPages.map((page) => (
+        {openedPages.map((item) => (
           <div
-            key={page.page}
+            key={item.page.value}
             role="button"
             tabIndex={0}
-            data-active={currentPage.page === page.page || undefined}
-            onClick={() => pagesActions.changePage(page)}
+            data-active={currentPage.page === item.page || undefined}
+            onClick={() => pagesActions.changePage(item)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
                 e.preventDefault()
-                pagesActions.changePage(page)
+                pagesActions.changePage(item)
               }
             }}
             className="inline-flex h-full shrink-0 cursor-pointer items-center justify-center gap-2 border-r-2 border-border bg-background px-2 text-xs font-medium whitespace-nowrap transition-all outline-none select-none hover:bg-muted hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 has-[button:hover]:bg-background! data-active:bg-foreground! data-active:font-bold data-active:text-background! data-active:hover:bg-foreground! data-active:hover:text-background! data-active:has-[button:hover]:bg-foreground! data-active:has-[button:hover]:text-background!"
           >
-            <HugeiconsIcon icon={page.icon} className="scale-60" />
-            {page.name}
+            <HugeiconsIcon icon={item.icon} className="scale-60" />
+            {item.name}
             {openedPages.length > 1 && (
               <Button
                 size={"icon-xs"}
@@ -82,7 +82,7 @@ export default function AppHeader() {
                 className="hover:bg-background/20 dark:hover:bg-background/20!"
                 onClick={(e) => {
                   e.stopPropagation()
-                  pagesActions.removePage(page)
+                  pagesActions.removePage(item)
                 }}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {

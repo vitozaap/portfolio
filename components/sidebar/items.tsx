@@ -1,5 +1,6 @@
 import {
   FileCodeIcon,
+  Flag02Icon,
   GithubIcon,
   Note01Icon,
   NpmIcon,
@@ -7,39 +8,70 @@ import {
   ThirdBracketSquareIcon,
   Typescript01Icon,
 } from "@hugeicons/core-free-icons"
-import { Groups, Item } from "../core/pages/types"
+import { Groups, Item, Pages } from "../core/pages/types"
+import Readme from "../core/pages/readme/readme"
+
+
+
 
 const root: Item[] = [
   {
-    page: "README",
+    page: {
+      value: "README",
+      component: <Readme />
+    },
     name: "README.md",
     icon: Note01Icon,
   },
   {
-    page: "About",
+    page: {
+      value: "About",
+      component: <></>
+    },
     name: "about.ts",
     icon: Typescript01Icon,
   },
   {
-    page: "Contact",
+    page: {
+      value: "Certs",
+      component: <></>
+    },
+    name: "certs.yml",
+    icon: Flag02Icon
+  },
+  {
+    page: {
+      value: "Contact",
+      component: <></>
+    },
     name: "contact.yml",
     icon: FileCodeIcon,
   },
   {
-    page: "Package",
+    page: {
+      value: "Package",
+      component: <></>
+    },
     name: "package.json",
     icon: NpmIcon,
   },
   {
-    page: "Skills",
+    page: {
+      value: "Skills",
+      component: <></>
+    },
     name: "skills.json",
     icon: ThirdBracketSquareIcon,
   },
 ]
 
+
 const projects: Item[] = [
   {
-    page: "Comprez",
+    page: {
+      value: "Comprez",
+      component: <></>
+    },
     name: "comprez.tsx",
     icon: ReactIcon,
   },
@@ -47,8 +79,11 @@ const projects: Item[] = [
 
 const git: Item[] = [
   {
-    page: "Git",
-    name: ".git",
+    page: {
+      value: "Git",
+      component: <></>
+    },
+    name: ".gitlogs ",
     icon: GithubIcon,
   },
 ]
@@ -67,3 +102,6 @@ export const groups: Groups = [
     items: git,
   },
 ]
+
+export const findItemByPage = (value: Pages["value"]): Item | undefined =>
+  groups.flatMap((group) => group.items).find((item) => item.page.value === value)
