@@ -185,6 +185,26 @@
     --color-destructive-foreground: var(--destructive-foreground);
 }
 
+.crt-overlay {
+    background: repeating-linear-gradient(
+        to bottom,
+        oklch(0 0 0 / 0.1) 0px,
+        oklch(0 0 0 / 0.1) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+}
+
+.dark .crt-overlay {
+    background: repeating-linear-gradient(
+        to bottom,
+        oklch(1 0 0 / 0.05) 0px,
+        oklch(1 0 0 / 0.05) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

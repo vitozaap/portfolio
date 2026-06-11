@@ -7,6 +7,18 @@ import { usePagesActions, usePagesStore } from "./pages/store"
 import { Cancel01Icon, CommandIcon } from "@hugeicons/core-free-icons"
 import { useTheme } from "next-themes"
 import { useShallow } from "zustand/shallow"
+import { useSyncExternalStore } from "react"
+import { useCrtActions, useCrtStore } from "./crt/store"
+import { cn } from "@/lib/utils"
+
+const emptySubscribe = () => () => { }
+// true after hydration, false during SSR — keeps server and first client render in sync
+const useMounted = () =>
+  useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false
+  )
 
 export default function AppHeader() {
   const { openedPages, currentPage } = usePagesStore(
@@ -16,7 +28,12 @@ export default function AppHeader() {
     }))
   )
   const pagesActions = usePagesActions()
+  const scanlines = useCrtStore((s) => s.scanlines)
+  const crtActions = useCrtActions()
   const { resolvedTheme, setTheme } = useTheme()
+  // resolvedTheme is undefined on the server; resolve the label only after mount
+  const mounted = useMounted()
+  const themeLabel = mounted && resolvedTheme === "dark" ? "LIGHT" : "DARK"
   function changeTheme() {
     setTheme(resolvedTheme === "dark" ? "light" : "dark")
   }
@@ -46,8 +63,29 @@ export default function AppHeader() {
             }}
           >
             <div className="size-1.5 rounded-full bg-foreground transition-all group-hover:bg-background"></div>
-            <p className="font-semibold tracking-wider">DARK</p>
+            <p className="font-semibold tracking-wider">{themeLabel}</p>
           </div>
+          <div
+            role="button"
+            tabIndex={0}
+            className="group -mt-2 -mb-1 flex cursor-pointer items-center gap-1 self-stretch border-l-2 px-4 transition-all hover:bg-foreground hover:text-background focus-visible:ring-1 focus-visible:ring-ring/50"
+            onClick={crtActions.toggleScanlines}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault()
+                crtActions.toggleScanlines()
+              }
+            }}
+          >
+            <div
+              className={cn(
+                "size-1.5 rounded-full border border-foreground transition-all group-hover:border-background",
+                scanlines && "bg-foreground group-hover:bg-background"
+              )}
+            ></div>
+            <p className="font-semibold tracking-wider">CRT</p>
+          </div>
+
           <div className="group -mt-2 -mr-2 -mb-1 flex cursor-pointer items-center gap-1 self-stretch border-l-2 px-4 transition-all hover:bg-foreground hover:text-background focus-visible:ring-1 focus-visible:ring-ring/50">
             <div className="flex items-center justify-center border border-foreground px-1 transition-all group-hover:border-background">
               <HugeiconsIcon icon={CommandIcon} size={12} />
