@@ -7,6 +7,7 @@ import { SidebarProvider } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/sidebar/app-sidebar"
 import { AppFooter } from "@/components/core/app-footer"
 import AppHeader from "@/components/core/app-header"
+import CrtOverlay from "@/components/core/crt/overlay"
 
 const spaceGroteskHeading = Space_Grotesk({
   subsets: ["latin"],
@@ -50,6 +51,7 @@ export default function RootLayout({
             </div>
           </SidebarProvider>
           <AppFooter />
+          <CrtOverlay />
         </ThemeProvider>
       </body>
     </html>
