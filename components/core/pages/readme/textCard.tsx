@@ -11,7 +11,7 @@ function TextCardTitle({ className, ...props }: ComponentProps<"h2">) {
 }
 
 function TextCardDescription({ className, ...props }: ComponentProps<"span">) {
-    return <span className={cn("text-sm tracking-wide", className)} {...props} />
+    return <span className={cn("text-sm tracking-wide text-foreground/80", className)} {...props} />
 }
 
 export {

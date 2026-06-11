@@ -1,8 +1,12 @@
+import { findItemByPage } from "@/components/sidebar/items";
+import { usePagesActions } from "../store";
+import { FileCard, FileCardDescription, FileCardKicker, fileCards, FileCardTitle } from "./fileCard";
 import { TextCard, TextCardTitle, TextCardDescription } from "./textCard";
 
 export default function Readme() {
+  const pagesActions = usePagesActions()
   return (
-    <main className="flex flex-col h-full w-full gap-6">
+    <main className="flex flex-col min-h-full w-full gap-6">
       <div className="flex w-full p-1.5 bg-foreground">
         <div className="flex flex-col w-full gap-3 justify-center text-background p-3 border border-background/30">
           <h1 className="font-bold text-8xl tracking-tight font-heading">VICTOR<span className="text-background/50 px-2">/</span>SANTOS</h1>
@@ -19,6 +23,7 @@ export default function Readme() {
           Comecei cedo, por curiosidade. Hoje construo sistemas que rodam
           em produção: APIs, infra, front, banco — o pacote completo.</TextCardDescription>
       </TextCard>
+
       <TextCard>
         <TextCardTitle>navegação</TextCardTitle>
         <TextCardDescription>
@@ -26,8 +31,21 @@ export default function Readme() {
         </TextCardDescription>
       </TextCard>
 
-      {/* TODO: Cards para navegação entre os arquivos */}
-      
+      <div className="grid grid-cols-2 gap-6">
+        {fileCards.map((item, index) =>
+        (
+          <FileCard key={item.page} onClick={() => {
+            const target = findItemByPage(item.page)
+            if (target) pagesActions.changePage(target)
+          }}>
+            <FileCardKicker>
+              {String(index + 1).padStart(2, "0")} / {item.kicker}
+            </FileCardKicker>
+            <FileCardTitle>{item.title}</FileCardTitle>
+            <FileCardDescription>{item.description}</FileCardDescription>
+          </FileCard>))}
+      </div>
+
       <TextCard className="max-w-xl">
         <TextCardTitle>tl;dr</TextCardTitle>
         <TextCardDescription>

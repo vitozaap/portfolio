@@ -3,16 +3,19 @@ import { ThirdBracketSquareIcon } from "@hugeicons/core-free-icons"
 import { IconSvgElement } from "@hugeicons/react"
 import { JSX, ReactElement, ReactNode } from "react"
 
+export const pagesEnum = z.enum([
+  "README",
+  "Certs",
+  "Contact",
+  "About",
+  "Skills",
+  "Package",
+  "Comprez",
+  "Git",
+])
+
 export const pagesSchema = z.object({
-  value: z.enum([
-    "README",
-    "Contact",
-    "About",
-    "Skills",
-    "Package",
-    "Comprez",
-    "Git",
-  ]),
+  value: pagesEnum,
   component: z.custom<JSX.Element>(),
 })
 export type Pages = z.infer<typeof pagesSchema>

@@ -1,5 +1,6 @@
 import {
   FileCodeIcon,
+  Flag02Icon,
   GithubIcon,
   Note01Icon,
   NpmIcon,
@@ -7,7 +8,7 @@ import {
   ThirdBracketSquareIcon,
   Typescript01Icon,
 } from "@hugeicons/core-free-icons"
-import { Groups, Item } from "../core/pages/types"
+import { Groups, Item, Pages } from "../core/pages/types"
 import Readme from "../core/pages/readme/readme"
 
 
@@ -29,6 +30,14 @@ const root: Item[] = [
     },
     name: "about.ts",
     icon: Typescript01Icon,
+  },
+  {
+    page: {
+      value: "Certs",
+      component: <></>
+    },
+    name: "certs.yml",
+    icon: Flag02Icon
   },
   {
     page: {
@@ -74,7 +83,7 @@ const git: Item[] = [
       value: "Git",
       component: <></>
     },
-    name: ".git",
+    name: ".gitlogs ",
     icon: GithubIcon,
   },
 ]
@@ -93,3 +102,6 @@ export const groups: Groups = [
     items: git,
   },
 ]
+
+export const findItemByPage = (value: Pages["value"]): Item | undefined =>
+  groups.flatMap((group) => group.items).find((item) => item.page.value === value)
