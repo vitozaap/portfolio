@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { cva, VariantProps } from "class-variance-authority";
 import { ComponentProps, ReactNode } from "react";
 
 interface IdeTextGroupProps extends ComponentProps<"div"> {
@@ -6,6 +7,18 @@ interface IdeTextGroupProps extends ComponentProps<"div"> {
     curlyBrackets?: boolean
     brackets?: boolean
 }
+
+const highlightedTextVariants = cva("text-sm text-foreground underline underline-offset-4", {
+    variants: {
+        variant: {
+            underline: "font-bold not-italic",
+            dotted: "decoration-dotted font-normal italic"
+        }
+    },
+    defaultVariants: {
+        variant: "underline"
+    }
+})
 
 function IdeComment({ className, children, ...props }: ComponentProps<"span">) {
     return <span className={cn("italic text-sm text-foreground/50", className)} {...props}>// {children} </span>
@@ -15,9 +28,9 @@ function IdeText({ className, ...props }: ComponentProps<"span">) {
     return <span className={cn("whitespace-pre-line text-sm", className)} {...props} />
 }
 
-function IdeTextHighlighted({ className, ...props }: ComponentProps<"span">) {
+function IdeTextHighlighted({ className, variant = "underline", ...props }: ComponentProps<"span"> & VariantProps<typeof highlightedTextVariants>) {
     //todo  finish the Highlighted IDE text component
-    return <span className={cn("", className)} {...props} />
+    return <span className={cn(highlightedTextVariants({ variant, className }))} {...props} />
 }
 
 
