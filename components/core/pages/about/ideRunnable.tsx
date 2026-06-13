@@ -6,7 +6,7 @@ import { HugeiconsIcon } from "@hugeicons/react"
 import { AnimatePresence, motion, useReducedMotion } from "motion/react"
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { IdeComment } from "./ideTextComponents"
+import { IdeComment } from "../ideTextComponents"
 
 interface IdeRunnableProps {
     command: string

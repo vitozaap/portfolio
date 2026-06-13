@@ -1,4 +1,4 @@
-import { IdeComment, IdeText, IdeTextGroup, IdeTextHighlighted } from "./ideTextComponents";
+import { IdeComment, IdeText, IdeTextGroup, IdeTextHighlighted } from "../ideTextComponents";
 import { IdeRunnable } from "./ideRunnable";
 
 const BIO = "Me chamo Victor Santos, e adoro tecnologia. Comecei bem cedo a me interessar pela área, e hoje, venho me desenvolvendo como programador fullstack.";
@@ -20,7 +20,7 @@ export default function About() {
                 <IdeTextGroup curlyBrackets groupTitle={<IdeText><b>export class</b> Victor <b>implements</b> Engineer</IdeText>}>
                     <IdeText>
                         name     = <IdeTextHighlighted variant={"dotted"}>"Victor Santos"</IdeTextHighlighted> {"\n"}
-                        role     = "<IdeTextHighlighted variant={"dotted"}>Software Engineer"</IdeTextHighlighted> {"\n"}
+                        role     = <IdeTextHighlighted variant={"dotted"}>"Software Engineer"</IdeTextHighlighted> {"\n"}
                         location = <IdeTextHighlighted variant={"dotted"}>"Brasil"</IdeTextHighlighted> {"\n"}
                         {"\n"}
                         <IdeComment>o que me move</IdeComment> {"\n"}
