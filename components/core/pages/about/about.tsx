@@ -1,4 +1,8 @@
 import { IdeComment, IdeText, IdeTextGroup, IdeTextHighlighted } from "./ideTextComponents";
+import { IdeRunnable } from "./ideRunnable";
+
+const BIO = "Me chamo Victor Santos, e adoro tecnologia. Comecei bem cedo a me interessar pela área, e hoje, venho me desenvolvendo como programador fullstack.";
+const GREET = "olá, vamos construir algo?";
 
 export default function About() {
     return (
@@ -31,15 +35,20 @@ export default function About() {
                     </IdeText>
                     <IdeTextGroup curlyBrackets groupTitle={<IdeText><IdeTextHighlighted>bio</IdeTextHighlighted>(): string</IdeText>}>
                         <IdeText>
-                            return `Me chamo Victor Santos, e adoro tecnologia. Comecei bem cedo a me interessar pela área, e hoje, venho me desenvolvendo como programador fullstack.`
+                            <b>return</b> <IdeTextHighlighted variant={"dotted"}>{`\`${BIO}\``}</IdeTextHighlighted>
                         </IdeText>
                     </IdeTextGroup>
                     <IdeTextGroup curlyBrackets groupTitle={<IdeText><IdeTextHighlighted>greet</IdeTextHighlighted>(): string</IdeText>} >
                         <IdeText>
-                            return "olá, vamos construir algo?"
+                            <b>return</b> <IdeTextHighlighted variant={"dotted"}>{`"${GREET}"`}</IdeTextHighlighted>
                         </IdeText>
                     </IdeTextGroup>
                 </IdeTextGroup>
+            </section>
+            <section className="flex flex-col gap-2">
+                <IdeComment>→ const v = new Victor()</IdeComment>
+                <IdeRunnable command="v.bio()" output={BIO} />
+                <IdeRunnable command="v.greet()" output={GREET} />
             </section>
         </main>
     )
