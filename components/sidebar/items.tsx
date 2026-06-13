@@ -11,6 +11,7 @@ import {
 import { Groups, Item, Pages } from "../core/pages/types"
 import Readme from "../core/pages/readme/readme"
 import About from "../core/pages/about/about"
+import Package from "../core/pages/package/package"
 
 
 
@@ -51,7 +52,7 @@ const root: Item[] = [
   {
     page: {
       value: "Package",
-      component: <></>
+      component: <Package />
     },
     name: "package.json",
     icon: NpmIcon,
