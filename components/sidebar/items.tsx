@@ -10,6 +10,7 @@ import {
 } from "@hugeicons/core-free-icons"
 import { Groups, Item, Pages } from "../core/pages/types"
 import Readme from "../core/pages/readme/readme"
+import About from "../core/pages/about/about"
 
 
 
@@ -26,7 +27,7 @@ const root: Item[] = [
   {
     page: {
       value: "About",
-      component: <></>
+      component: <About />
     },
     name: "about.ts",
     icon: Typescript01Icon,

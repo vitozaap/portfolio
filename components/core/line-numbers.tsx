@@ -17,7 +17,10 @@ export default function LineNumbers({
     const row = rowRef.current
     if (!row) return
     const observer = new ResizeObserver(([entry]) => {
-      setLineCount(Math.ceil(entry.contentRect.height / LINE_HEIGHT))
+      // floor: the numbers column is `overflow-hidden`, so a partial
+      // trailing row would render taller than the gutter and get clipped — that
+      // clipped half-line is the "extra hidden number" at the bottom.
+      setLineCount(Math.floor(entry.contentRect.height / LINE_HEIGHT))
     })
     observer.observe(row)
     return () => observer.disconnect()
@@ -34,7 +37,7 @@ export default function LineNumbers({
           height back into the row measured by the ResizeObserver. */}
       <div
         aria-hidden
-        className="relative w-12 shrink-0 self-stretch border-r-2 select-none"
+        className="relative w-12 shrink-0 self-stretch border-r select-none"
       >
         <div className="absolute inset-0 overflow-hidden pr-2 text-right text-xs leading-6 font-medium whitespace-pre text-muted-foreground/60">
           {numbers}
