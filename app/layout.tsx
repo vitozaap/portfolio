@@ -8,6 +8,7 @@ import { AppSidebar } from "@/components/sidebar/app-sidebar"
 import { AppFooter } from "@/components/core/app-footer"
 import AppHeader from "@/components/core/app-header"
 import CrtOverlay from "@/components/core/crt/overlay"
+import CustomCursor from "@/components/core/cursor/custom-cursor"
 
 const spaceGroteskHeading = Space_Grotesk({
   subsets: ["latin"],
@@ -52,6 +53,7 @@ export default function RootLayout({
           </SidebarProvider>
           <AppFooter />
           <CrtOverlay />
+          <CustomCursor />
         </ThemeProvider>
       </body>
     </html>
