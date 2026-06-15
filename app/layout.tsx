@@ -7,6 +7,7 @@ import { SidebarProvider } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/sidebar/app-sidebar"
 import { AppFooter } from "@/components/core/app-footer"
 import AppHeader from "@/components/core/app-header"
+import { MobileDock } from "@/components/core/mobile-dock"
 import CrtOverlay from "@/components/core/crt/overlay"
 import CustomCursor from "@/components/core/cursor/custom-cursor"
 
@@ -46,9 +47,10 @@ export default function RootLayout({
         <ThemeProvider>
           <SidebarProvider className="min-h-0 flex-1">
             <AppSidebar />
-            <div className="flex min-h-0 flex-1 flex-col">
+            <div className="flex min-h-0 min-w-0 flex-1 flex-col">
               <AppHeader />
               {children}
+              <MobileDock />
             </div>
           </SidebarProvider>
           <AppFooter />

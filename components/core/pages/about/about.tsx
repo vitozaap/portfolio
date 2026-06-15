@@ -8,7 +8,7 @@ export default function About() {
     return (
         <main className="flex flex-col w-full min-h-full gap-6 tracking-wide">
             <IdeComment>Quem sou? Leia o código abaixo.</IdeComment>
-            <section className="flex flex-col gap-4 max-w-8/12">
+            <section className="flex flex-col gap-4 max-w-full md:max-w-8/12">
                 <IdeTextGroup curlyBrackets groupTitle={<IdeText><b>interface</b> Engineer</IdeText>}>
                     <IdeText>
                         name: string  {"\n"}
