@@ -13,6 +13,7 @@ import Readme from "../core/pages/readme/readme"
 import About from "../core/pages/about/about"
 import Package from "../core/pages/package/package"
 import Skills from "../core/pages/skills/skills"
+import StillDeveloping from "../core/developing"
 
 
 
@@ -37,7 +38,7 @@ const root: Item[] = [
   {
     page: {
       value: "Certs",
-      component: <></>
+      component: <StillDeveloping />
     },
     name: "certs.yml",
     icon: Flag02Icon
@@ -45,7 +46,7 @@ const root: Item[] = [
   {
     page: {
       value: "Contact",
-      component: <></>
+      component: <StillDeveloping />
     },
     name: "contact.yml",
     icon: FileCodeIcon,
@@ -73,7 +74,7 @@ const projects: Item[] = [
   {
     page: {
       value: "Comprez",
-      component: <></>
+      component: <StillDeveloping />
     },
     name: "comprez.tsx",
     icon: ReactIcon,
@@ -84,7 +85,7 @@ const git: Item[] = [
   {
     page: {
       value: "Git",
-      component: <></>
+      component: <StillDeveloping />
     },
     name: ".gitlogs ",
     icon: GithubIcon,
