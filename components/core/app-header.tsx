@@ -2,12 +2,18 @@
 
 import { HugeiconsIcon } from "@hugeicons/react"
 import { Button } from "../ui/button"
-import { SidebarHeader } from "../ui/sidebar"
+import { SidebarHeader, useSidebar } from "../ui/sidebar"
 import { usePagesActions, usePagesStore } from "./pages/store"
-import { Cancel01Icon, CommandIcon } from "@hugeicons/core-free-icons"
+import {
+  Cancel01Icon,
+  CommandIcon,
+  Menu01Icon,
+  Moon02Icon,
+  Sun01Icon,
+} from "@hugeicons/core-free-icons"
 import { useTheme } from "next-themes"
 import { useShallow } from "zustand/shallow"
-import { useSyncExternalStore } from "react"
+import { useEffect, useRef, useSyncExternalStore } from "react"
 import { useCrtActions, useCrtStore } from "./crt/store"
 import { cn } from "@/lib/utils"
 
@@ -30,16 +36,69 @@ export default function AppHeader() {
   const pagesActions = usePagesActions()
   const scanlines = useCrtStore((s) => s.scanlines)
   const crtActions = useCrtActions()
+  const { toggleSidebar } = useSidebar()
   const { resolvedTheme, setTheme } = useTheme()
   // resolvedTheme is undefined on the server; resolve the label only after mount
   const mounted = useMounted()
-  const themeLabel = mounted && resolvedTheme === "dark" ? "LIGHT" : "DARK"
+  const isDark = mounted && resolvedTheme === "dark"
+  const themeLabel = isDark ? "LIGHT" : "DARK"
   function changeTheme() {
     setTheme(resolvedTheme === "dark" ? "light" : "dark")
   }
+
+  // Keep the active tab visible when the tab strip overflows (mobile): scroll
+  // it into view within the strip itself — never the page.
+  const tabsRef = useRef<HTMLDivElement>(null)
+  useEffect(() => {
+    const strip = tabsRef.current
+    const active = strip?.querySelector<HTMLElement>("[data-active]")
+    if (!strip || !active) return
+    const a = active.getBoundingClientRect()
+    const s = strip.getBoundingClientRect()
+    if (a.right > s.right) strip.scrollLeft += a.right - s.right + 8
+    else if (a.left < s.left) strip.scrollLeft -= s.left - a.left + 8
+  }, [currentPage])
   return (
-    <SidebarHeader className="px-0!">
-      <div className="flex max-h-8 w-full shrink-0 items-center justify-between p-2">
+    <SidebarHeader className="gap-0! p-0! md:gap-1! md:px-0! md:py-2!">
+      {/* Mobile top bar — compact burger / brand / actions, hidden on md+.
+          No bottom border: the tab bar's top border serves as the divider. */}
+      <div className="flex h-12 w-full shrink-0 items-stretch md:hidden">
+        <button
+          type="button"
+          onClick={toggleSidebar}
+          aria-label="Open file explorer"
+          className="flex w-11 shrink-0 items-center justify-center border-r-2 transition-colors hover:bg-foreground hover:text-background active:bg-foreground active:text-background"
+        >
+          <HugeiconsIcon icon={Menu01Icon} size={18} />
+        </button>
+        <div className="flex min-w-0 flex-1 items-center gap-2 px-3">
+          <div className="size-2 shrink-0 bg-foreground" />
+          <p className="truncate text-[11px] font-bold tracking-tight uppercase">
+            PORTFOLIO.VICTOR
+          </p>
+          <span className="ml-auto animate-pulse text-[10px] opacity-70">●</span>
+        </div>
+        <div className="flex shrink-0 items-stretch border-l-2">
+          <button
+            type="button"
+            onClick={changeTheme}
+            aria-label="Toggle theme"
+            className="flex w-11 items-center justify-center transition-colors hover:bg-foreground hover:text-background active:bg-foreground active:text-background"
+          >
+            <HugeiconsIcon icon={isDark ? Sun01Icon : Moon02Icon} size={16} />
+          </button>
+          <button
+            type="button"
+            aria-label="Command palette"
+            className="flex w-11 items-center justify-center border-l-2 transition-colors hover:bg-foreground hover:text-background active:bg-foreground active:text-background"
+          >
+            <HugeiconsIcon icon={CommandIcon} size={16} />
+          </button>
+        </div>
+      </div>
+
+      {/* Desktop metadata bar — hidden below md */}
+      <div className="hidden max-h-8 w-full shrink-0 items-center justify-between p-2 md:flex">
         <div className="flex gap-5">
           <p className="text-xs">BRUTALIST IDE V1.0</p>
           <span className="text-xs font-extralight opacity-70">/</span>
@@ -95,7 +154,10 @@ export default function AppHeader() {
           </div>
         </div>
       </div>
-      <div className="flex min-h-11 w-full shrink-0 items-center border-y-2">
+      <div
+        ref={tabsRef}
+        className="no-scrollbar flex min-h-11 w-full shrink-0 items-center overflow-x-auto border-y-2"
+      >
         {openedPages.map((item) => (
           <div
             key={item.page.value}

@@ -11,6 +11,8 @@ import {
 import { Groups, Item, Pages } from "../core/pages/types"
 import Readme from "../core/pages/readme/readme"
 import About from "../core/pages/about/about"
+import Package from "../core/pages/package/package"
+import Skills from "../core/pages/skills/skills"
 
 
 
@@ -51,7 +53,7 @@ const root: Item[] = [
   {
     page: {
       value: "Package",
-      component: <></>
+      component: <Package />
     },
     name: "package.json",
     icon: NpmIcon,
@@ -59,7 +61,7 @@ const root: Item[] = [
   {
     page: {
       value: "Skills",
-      component: <></>
+      component: <Skills />
     },
     name: "skills.json",
     icon: ThirdBracketSquareIcon,

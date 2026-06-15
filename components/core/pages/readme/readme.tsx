@@ -9,8 +9,8 @@ export default function Readme() {
     <main className="flex flex-col min-h-full w-full gap-6">
       <div className="flex w-full p-1.5 bg-foreground">
         <div className="flex flex-col w-full gap-3 justify-center text-background p-3 border border-background/30">
-          <h1 className="font-bold text-8xl tracking-tight font-heading">VICTOR<span className="text-background/50 px-2">/</span>SANTOS</h1>
-          <div className="flex gap-4 items-center uppercase tracking-wider text-xs">
+          <h1 className="font-bold text-4xl sm:text-6xl md:text-8xl tracking-tight font-heading">VICTOR<span className="text-background/50 px-2">/</span>SANTOS</h1>
+          <div className="flex flex-wrap gap-2 sm:gap-4 items-center uppercase tracking-wider text-xs">
             <p className="border border-background p-2">Software Engineer</p>
             <p>Fullstack • TS • INGLÊS • AWS • DOCKER</p>
           </div>
@@ -31,7 +31,7 @@ export default function Readme() {
         </TextCardDescription>
       </TextCard>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
         {fileCards.map((item, index) =>
         (
           <FileCard key={item.page} onClick={() => {

@@ -11,6 +11,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarSeparator,
+  useSidebar,
 } from "@/components/ui/sidebar"
 import {
   Collapsible,
@@ -18,6 +19,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import { groups } from "./items"
+import { Item } from "../core/pages/types"
 import { HugeiconsIcon } from "@hugeicons/react"
 import { ArrowRight } from "@hugeicons/core-free-icons"
 import { usePagesActions, usePagesStore } from "../core/pages/store"
@@ -29,6 +31,14 @@ export function AppSidebar() {
   const pagesActions = usePagesActions()
   const openFolders = useFolderStore((state) => state.openFolders)
   const folderActions = useFolderActions()
+  const { isMobile, setOpenMobile } = useSidebar()
+
+  // On mobile the sidebar is an overlay sheet — close it after picking a file
+  // so the content underneath becomes visible (matches the mobile design).
+  function openPage(item: Item) {
+    pagesActions.changePage(item)
+    if (isMobile) setOpenMobile(false)
+  }
 
   // Load persisted folder state only after mount (store uses skipHydration),
   // so server and first client render match before applying localStorage.
@@ -79,7 +89,7 @@ export function AppSidebar() {
                         <SidebarMenuItem key={item.page.value}>
                           <SidebarMenuButton
                             isActive={page === item.page}
-                            onClick={() => pagesActions.changePage(item)}
+                            onClick={() => openPage(item)}
                           >
                             <HugeiconsIcon icon={item.icon} /> {item.name}
                           </SidebarMenuButton>
