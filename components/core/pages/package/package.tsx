@@ -63,7 +63,7 @@ function Property({
                 <Key>{name}</Key>
                 <IdeText>: </IdeText>
             </span>
-            <IdeText>
+            <IdeText className="min-w-0 break-all">
                 <Value>{value}</Value>
                 {last ? "" : ","}
             </IdeText>

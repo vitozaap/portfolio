@@ -4,6 +4,16 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Hide scrollbars while keeping scroll behaviour — used by the sidebar content
+   and the mobile tab bar so horizontal/vertical overflow stays scrollable
+   without a visible track. */
+@utility no-scrollbar {
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
 :root {
     --background: oklch(0.9585 0.0098 87.4715);
     --foreground: oklch(0.1448 0 0);
