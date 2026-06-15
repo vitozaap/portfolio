@@ -3,7 +3,7 @@ import { cva, VariantProps } from "class-variance-authority";
 import { ComponentProps, ReactNode } from "react";
 
 interface IdeTextGroupProps extends ComponentProps<"div"> {
-    groupTitle: ReactNode
+    groupTitle?: ReactNode
     curlyBrackets?: boolean
     brackets?: boolean
     comma?: boolean
@@ -40,7 +40,7 @@ function IdeTextHighlighted({ className, variant = "underline", ...props }: Comp
 function IdeTextGroup({ className, children, groupTitle, curlyBrackets, brackets, comma, tight, ...props }: IdeTextGroupProps) {
     return (
         <div className={cn("flex flex-col", className)} {...props}>
-            <div className="flex">{groupTitle} &nbsp; {brackets || curlyBrackets ? <IdeText>{curlyBrackets ? '{' : '['}</IdeText> : null}</div>
+            <div className="flex">{groupTitle ? <>{groupTitle} &nbsp;</> : null}  {brackets || curlyBrackets ? <IdeText>{curlyBrackets ? '{' : '['}</IdeText> : null}</div>
             <div className={cn("flex flex-col ps-4", tight ? "gap-0" : "gap-3")}>{children}</div>
             {brackets || curlyBrackets ? <IdeText>{curlyBrackets ? '}' : ']'}{comma ? ',' : ''}</IdeText> : null}
         </div>
