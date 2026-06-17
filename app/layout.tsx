@@ -1,3 +1,4 @@
+import type { Metadata } from "next"
 import { Geist, JetBrains_Mono, Space_Grotesk } from "next/font/google"
 
 import "./globals.css"
@@ -11,6 +12,25 @@ import { MobileDock } from "@/components/core/mobile-dock"
 import CrtOverlay from "@/components/core/crt/overlay"
 import CustomCursor from "@/components/core/cursor/custom-cursor"
 import { Toaster } from "@/components/ui/sonner"
+
+export const metadata: Metadata = {
+  metadataBase: new URL("https://vitozap.dev"),
+  title: "Victor Santos — Software Engineer",
+  description: "Software Engineer. Portfólio em formato de IDE brutalista.",
+  openGraph: {
+    title: "Victor Santos — Software Engineer",
+    description: "Software Engineer. Portfólio em formato de IDE brutalista.",
+    url: "https://vitozap.dev",
+    siteName: "Victor Santos",
+    type: "website",
+    locale: "pt_BR",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Victor Santos — Software Engineer",
+    description: "Software Engineer. Portfólio em formato de IDE brutalista.",
+  },
+}
 
 const spaceGroteskHeading = Space_Grotesk({
   subsets: ["latin"],
