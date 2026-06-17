@@ -8,9 +8,10 @@ import Link from "next/link";
 
 
 
-const CONTACT_DATA: Pick<ContactCardProps, "title" | "value">[] = [{
+const CONTACT_DATA: Pick<ContactCardProps, "title" | "value" | "isEmail">[] = [{
     title: "email",
-    value: "mailto:menezes.victorsantos@outlook.com"
+    isEmail: true,
+    value: "menezes.victorsantos@outlook.com"
 },
 {
     title: "linkedin",
@@ -23,12 +24,13 @@ const CONTACT_DATA: Pick<ContactCardProps, "title" | "value">[] = [{
 
 interface ContactCardProps extends ComponentProps<"div"> {
     title: string
+    isEmail?: boolean
     value: string
     isCopied?: boolean
     onCopyValue?: (value: string) => void
 }
 
-function ContactCard({ title, value, isCopied, onCopyValue, className, ...props }: ContactCardProps) {
+function ContactCard({ title, value, isEmail, isCopied, onCopyValue, className, ...props }: ContactCardProps) {
     return <div className={cn("flex flex-col gap-3", className)} {...props}>
         <IdeText>
             <b>{title}:</b> {value}
@@ -36,7 +38,7 @@ function ContactCard({ title, value, isCopied, onCopyValue, className, ...props 
         <div className="flex items-center justify-between border-2 border-foreground p-4">
             <div className="flex flex-col gap-2">
                 <IdeText className="text-[11px] tracking-widest text-muted-foreground">{title.toUpperCase()}</IdeText>
-                <Link href={value}>
+                <Link href={isEmail ? `mailto:${value}` : value}>
                     <IdeTextHighlighted variant={"underline"}>
                         {value}
                     </IdeTextHighlighted>
@@ -67,6 +69,7 @@ export default function Contact() {
                     key={contact.value}
                     title={contact.title}
                     value={contact.value}
+                    isEmail={contact.isEmail}
                     isCopied={copiedValue === contact.value}
                     onCopyValue={handleCopy}
                 />
