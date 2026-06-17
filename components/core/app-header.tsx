@@ -16,6 +16,7 @@ import { useShallow } from "zustand/shallow"
 import { useEffect, useRef, useSyncExternalStore } from "react"
 import { useCrtActions, useCrtStore } from "./crt/store"
 import { cn } from "@/lib/utils"
+import { notifySearchComingSoon } from "./search-toast"
 
 const emptySubscribe = () => () => { }
 // true after hydration, false during SSR — keeps server and first client render in sync
@@ -89,7 +90,8 @@ export default function AppHeader() {
           </button>
           <button
             type="button"
-            aria-label="Command palette"
+            aria-label="Search"
+            onClick={notifySearchComingSoon}
             className="flex w-11 items-center justify-center border-l-2 transition-colors hover:bg-foreground hover:text-background active:bg-foreground active:text-background"
           >
             <HugeiconsIcon icon={CommandIcon} size={16} />
@@ -145,7 +147,19 @@ export default function AppHeader() {
             <p className="font-semibold tracking-wider">CRT</p>
           </div>
 
-          <div className="group -mt-2 -mr-2 -mb-1 flex cursor-pointer items-center gap-1 self-stretch border-l-2 px-4 transition-all hover:bg-foreground hover:text-background focus-visible:ring-1 focus-visible:ring-ring/50">
+          <div
+            role="button"
+            tabIndex={0}
+            aria-label="Search"
+            className="group -mt-2 -mr-2 -mb-1 flex cursor-pointer items-center gap-1 self-stretch border-l-2 px-4 transition-all hover:bg-foreground hover:text-background focus-visible:ring-1 focus-visible:ring-ring/50"
+            onClick={notifySearchComingSoon}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault()
+                notifySearchComingSoon()
+              }
+            }}
+          >
             <div className="flex items-center justify-center border border-foreground px-1 transition-all group-hover:border-background">
               <HugeiconsIcon icon={CommandIcon} size={12} />
               <p className="font-bold">K</p>
