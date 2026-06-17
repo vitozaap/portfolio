@@ -32,19 +32,19 @@ interface ContactCardProps extends ComponentProps<"div"> {
 
 function ContactCard({ title, value, isEmail, isCopied, onCopyValue, className, ...props }: ContactCardProps) {
     return <div className={cn("flex flex-col gap-3", className)} {...props}>
-        <IdeText>
+        <IdeText className="break-words max-md:text-xs">
             <b>{title}:</b> {value}
         </IdeText>
-        <div className="flex items-center justify-between border-2 border-foreground p-4">
-            <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4 border-2 border-foreground p-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex min-w-0 flex-col gap-2">
                 <IdeText className="text-[11px] tracking-widest text-muted-foreground">{title.toUpperCase()}</IdeText>
-                <Link href={isEmail ? `mailto:${value}` : value}>
-                    <IdeTextHighlighted variant={"underline"}>
+                <Link href={isEmail ? `mailto:${value}` : value} className="min-w-0 max-w-full">
+                    <IdeTextHighlighted variant={"underline"} className="break-words max-md:text-xs">
                         {value}
                     </IdeTextHighlighted>
                 </Link>
             </div>
-            <Button variant={"outline"} size={"lg"} onClick={() => onCopyValue?.(value)} className={"tracking-wide"}>{isCopied ? "Copiado!" : "COPIAR"}</Button>
+            <Button variant={"outline"} size={"lg"} onClick={() => onCopyValue?.(value)} className="w-full shrink-0 tracking-wide sm:w-auto">{isCopied ? "COPIADO!" : "COPIAR"}</Button>
         </div>
     </div >
 }
