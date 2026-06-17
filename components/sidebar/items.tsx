@@ -14,6 +14,7 @@ import About from "../core/pages/about/about"
 import Package from "../core/pages/package/package"
 import Skills from "../core/pages/skills/skills"
 import StillDeveloping from "../core/developing"
+import Contact from "../core/pages/contact/contact"
 
 
 
@@ -46,7 +47,7 @@ const root: Item[] = [
   {
     page: {
       value: "Contact",
-      component: <StillDeveloping />
+      component: <Contact />
     },
     name: "contact.yml",
     icon: FileCodeIcon,

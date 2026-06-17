@@ -23,13 +23,16 @@ const highlightedTextVariants = cva("text-sm text-foreground underline underline
         variant: "underline"
     }
 })
+interface IdeCommentProps extends ComponentProps<"span"> {
+    character?: string
+}
 
-function IdeComment({ className, children, ...props }: ComponentProps<"span">) {
-    return <span className={cn("italic text-sm text-foreground/50", className)} {...props}>// {children} </span>
+function IdeComment({ className, children, character = "//",...props }: IdeCommentProps) {
+    return <span className={cn("italic text-sm text-foreground/50", className)} {...props}>{character} {children} </span>
 }
 
 function IdeText({ className, ...props }: ComponentProps<"span">) {
-    return <span className={cn("whitespace-pre-line text-sm", className)} {...props} />
+    return <span className={cn("whitespace-pre-line text-sm tracking-wide", className)} {...props} />
 }
 
 function IdeTextHighlighted({ className, variant = "underline", ...props }: ComponentProps<"span"> & VariantProps<typeof highlightedTextVariants>) {
