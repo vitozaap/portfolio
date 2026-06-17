@@ -4,13 +4,15 @@ import { HugeiconsIcon, IconSvgElement } from "@hugeicons/react"
 import { Menu01Icon, Search01Icon, Tv01Icon } from "@hugeicons/core-free-icons"
 import { useSidebar } from "../ui/sidebar"
 import { useCrtActions, useCrtStore } from "./crt/store"
+import { notifySearchComingSoon } from "./search-toast"
 import { cn } from "@/lib/utils"
 
 /**
  * Bottom action dock shown only on mobile (`md:hidden`). Mirrors the desktop
  * header affordances as large tap targets: Files (toggles the explorer),
- * Search (command palette — placeholder until built, like the desktop CMD
- * button) and CRT (scanline toggle, replacing the design's "Tweaks" button).
+ * Search (command palette — shows a coming-soon toast until built, like the
+ * desktop CMD button) and CRT (scanline toggle, replacing the design's
+ * "Tweaks" button).
  */
 export function MobileDock() {
   const { toggleSidebar } = useSidebar()
@@ -23,7 +25,11 @@ export function MobileDock() {
       className="grid h-14 w-full shrink-0 grid-cols-3 border-t-2 md:hidden"
     >
       <DockButton icon={Menu01Icon} label="Files" onClick={toggleSidebar} />
-      <DockButton icon={Search01Icon} label="Search" />
+      <DockButton
+        icon={Search01Icon}
+        label="Search"
+        onClick={notifySearchComingSoon}
+      />
       <DockButton
         icon={Tv01Icon}
         label="CRT"

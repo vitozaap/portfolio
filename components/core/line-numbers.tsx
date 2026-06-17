@@ -32,7 +32,7 @@ export default function LineNumbers({
   )
 
   return (
-    <div ref={rowRef} className="flex min-h-full w-full">
+    <div ref={rowRef} className="flex w-full">
       {/* Numbers are absolutely positioned so the gutter never feeds its own
           height back into the row measured by the ResizeObserver. */}
       <div

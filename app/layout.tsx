@@ -10,6 +10,7 @@ import AppHeader from "@/components/core/app-header"
 import { MobileDock } from "@/components/core/mobile-dock"
 import CrtOverlay from "@/components/core/crt/overlay"
 import CustomCursor from "@/components/core/cursor/custom-cursor"
+import { Toaster } from "@/components/ui/sonner"
 
 const spaceGroteskHeading = Space_Grotesk({
   subsets: ["latin"],
@@ -56,6 +57,7 @@ export default function RootLayout({
           <AppFooter />
           <CrtOverlay />
           <CustomCursor />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
