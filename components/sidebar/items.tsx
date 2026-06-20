@@ -13,8 +13,6 @@ import Readme from "../core/pages/readme/readme"
 import About from "../core/pages/about/about"
 import Package from "../core/pages/package/package"
 import Skills from "../core/pages/skills/skills"
-import StillDeveloping from "../core/developing"
-import Contact from "../core/pages/contact/contact"
 
 
 
