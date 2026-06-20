@@ -60,7 +60,7 @@ export default function Skills() {
                     {items.map((item) => (
                         <div className="flex flex-col gap-1" key={item.name}>
                             <IdeTextGroup curlyBrackets>
-                                <div className="flex gap-2 items-center border max-sm:grid max-sm:grid-cols-[auto_1fr]">
+                                <div className="flex gap-2 items-center max-sm:grid max-sm:grid-cols-[auto_1fr]">
                                     <IdeTextHighlighted variant={"dotted"} className="whitespace-nowrap">"name"{":"} <b>"{item.name}"</b></IdeTextHighlighted>
                                     <IdeTextHighlighted variant={"dotted"} className="whitespace-nowrap max-sm:justify-self-end">"level"{":"} <b>"{item.value}"</b></IdeTextHighlighted>
                                     {item.comment ? <IdeComment className="max-sm:col-span-2">{item.comment}</IdeComment> : null}
