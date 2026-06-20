@@ -12,7 +12,7 @@ interface IdeTextGroupProps extends ComponentProps<"div"> {
     tight?: boolean
 }
 
-const highlightedTextVariants = cva("text-sm text-foreground underline underline-offset-4", {
+const highlightedTextVariants = cva("text-sm max-sm:text-xs text-foreground underline underline-offset-4", {
     variants: {
         variant: {
             underline: "font-bold not-italic",
@@ -27,12 +27,12 @@ interface IdeCommentProps extends ComponentProps<"span"> {
     character?: string
 }
 
-function IdeComment({ className, children, character = "//",...props }: IdeCommentProps) {
-    return <span className={cn("italic text-sm text-foreground/50", className)} {...props}>{character} {children} </span>
+function IdeComment({ className, children, character = "//", ...props }: IdeCommentProps) {
+    return <span className={cn("italic text-sm max-sm:text-xs text-foreground/50", className)} {...props}>{character} {children} </span>
 }
 
 function IdeText({ className, ...props }: ComponentProps<"span">) {
-    return <span className={cn("whitespace-pre-line text-sm tracking-wide", className)} {...props} />
+    return <span className={cn("whitespace-pre-line text-sm tracking-wide max-sm:text-xs", className)} {...props} />
 }
 
 function IdeTextHighlighted({ className, variant = "underline", ...props }: ComponentProps<"span"> & VariantProps<typeof highlightedTextVariants>) {
@@ -44,7 +44,7 @@ function IdeTextGroup({ className, children, groupTitle, curlyBrackets, brackets
     return (
         <div className={cn("flex flex-col", className)} {...props}>
             <div className="flex">{groupTitle ? <>{groupTitle} &nbsp;</> : null}  {brackets || curlyBrackets ? <IdeText>{curlyBrackets ? '{' : '['}</IdeText> : null}</div>
-            <div className={cn("flex flex-col ps-4", tight ? "gap-0" : "gap-3")}>{children}</div>
+            <div className={cn("flex flex-col ps-4 max-sm:ps-2", tight ? "gap-0" : "gap-3")}>{children}</div>
             {brackets || curlyBrackets ? <IdeText>{curlyBrackets ? '}' : ']'}{comma ? ',' : ''}</IdeText> : null}
         </div>
     )
