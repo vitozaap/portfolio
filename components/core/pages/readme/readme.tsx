@@ -5,26 +5,15 @@ import { findItemByPage } from "@/components/sidebar/items";
 import { usePagesActions } from "../store";
 import { FileCard, FileCardDescription, FileCardKicker, fileCards, FileCardTitle } from "./fileCard";
 import { TextCard, TextCardTitle, TextCardDescription } from "./textCard";
+import { clipReveal, slideUp } from "../anim";
 
 export default function Readme() {
     const pagesActions = usePagesActions()
     const shouldReduce = useReducedMotion()
 
-    const animHero = (index: number) => ({
-        initial: shouldReduce ? undefined : { clipPath: 'inset(0 100% 0 0)' as const },
-        animate: shouldReduce ? undefined : { clipPath: 'inset(0 0% 0 0)' as const },
-        transition: shouldReduce ? undefined : { duration: 0.4, ease: 'easeOut' as const, delay: index * 0.1 },
-    })
-
-    const animCard = (index: number) => ({
-        initial: shouldReduce ? undefined : { y: 20, opacity: 0 },
-        animate: shouldReduce ? undefined : { y: 0, opacity: 1 },
-        transition: shouldReduce ? undefined : { duration: 0.4, ease: 'easeOut' as const, delay: index * 0.1 },
-    })
-
     return (
         <main className="flex flex-col min-h-full w-full gap-6">
-            <motion.div {...animHero(0)} className="flex w-full p-1.5 bg-foreground">
+            <motion.div {...clipReveal(0, shouldReduce)} className="flex w-full p-1.5 bg-foreground">
                 <div className="flex flex-col w-full gap-3 justify-center text-background p-3 border border-background/30">
                     <h1 className="font-bold text-4xl sm:text-6xl md:text-8xl tracking-tight font-heading">VICTOR<span className="text-background/50 px-2">/</span>SANTOS</h1>
                     <div className="flex flex-wrap gap-2 sm:gap-4 items-center uppercase tracking-wider text-xs">
@@ -34,7 +23,7 @@ export default function Readme() {
                 </div>
             </motion.div>
 
-            <motion.div {...animCard(1)}>
+            <motion.div {...slideUp(1, shouldReduce)}>
                 <TextCard>
                     <TextCardTitle>olá, mundo.</TextCardTitle>
                     <TextCardDescription>Eu sou o <b>Victor Santos</b>, engenheiro de software fullstack.
@@ -43,7 +32,7 @@ export default function Readme() {
                 </TextCard>
             </motion.div>
 
-            <motion.div {...animCard(2)}>
+            <motion.div {...slideUp(2, shouldReduce)}>
                 <TextCard>
                     <TextCardTitle>navegação</TextCardTitle>
                     <TextCardDescription>
@@ -54,7 +43,7 @@ export default function Readme() {
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6">
                 {fileCards.map((item, index) => (
-                    <motion.div key={item.page} {...animCard(index + 3)}>
+                    <motion.div key={item.page} {...slideUp(index + 3, shouldReduce)}>
                         <FileCard onClick={() => {
                             const target = findItemByPage(item.page)
                             if (target) pagesActions.changePage(target)
@@ -69,7 +58,7 @@ export default function Readme() {
                 ))}
             </div>
 
-            <motion.div {...animCard(fileCards.length + 3)}>
+            <motion.div {...slideUp(fileCards.length + 3, shouldReduce)}>
                 <TextCard className="max-w-xl">
                     <TextCardTitle>tl;dr</TextCardTitle>
                     <TextCardDescription>

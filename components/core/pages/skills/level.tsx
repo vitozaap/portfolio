@@ -13,7 +13,7 @@ export function Level({ className, children, value, delay = 0 }: ProgressPrimiti
     }, [value, delay])
     return (
         <div className={cn("flex gap-2 items-center w-full", className)}>
-            <Progress value={displayValue} className={"w-full"} />
+            <Progress value={displayValue} className={"w-full"} indicatorClassName="duration-[400ms] ease-out" />
             <span className="text-xs font-bold">{children}</span>
         </div>
     )
