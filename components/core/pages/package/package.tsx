@@ -1,7 +1,4 @@
-"use client"
-
 import { ReactNode } from "react";
-import { motion, useReducedMotion } from "motion/react";
 import { IdeText, IdeTextGroup, IdeTextHighlighted } from "../ideTextComponents";
 
 const meta: [string, string][] = [
@@ -43,6 +40,9 @@ function Value({ children }: { children: ReactNode }) {
     return <IdeTextHighlighted variant="dotted">{`"${children}"`}</IdeTextHighlighted>;
 }
 
+// A `"key": "value",` line. When `column` is set, the key is given a fixed
+// width (in `ch`, exact since the whole app is monospaced) so sibling values
+// line up into a column, mirroring how an editor formats a JSON block.
 function Property({
     name,
     value,
@@ -80,6 +80,7 @@ function ObjectGroup({
     entries: [string, string][];
     last?: boolean;
 }) {
+    // `+4` accounts for the two quotes, the colon and a trailing space.
     const column = Math.max(...entries.map(([k]) => k.length)) + 4;
     return (
         <IdeTextGroup tight curlyBrackets comma={!last} groupTitle={<IdeText className="leading-6"><Key>{title}</Key>:</IdeText>}>
@@ -97,46 +98,28 @@ function ObjectGroup({
 }
 
 export default function Package() {
-    const shouldReduce = useReducedMotion()
-
-    const animItem = (index: number) => ({
-        initial: shouldReduce ? undefined : { clipPath: 'inset(0 100% 0 0)' } as const,
-        animate: shouldReduce ? undefined : { clipPath: 'inset(0 0% 0 0)' } as const,
-        transition: shouldReduce ? undefined : { duration: 0.4, ease: 'easeOut' as const, delay: index * 0.1 },
-    })
-
     return (
         <main className="flex flex-col w-full min-h-full leading-6 tracking-wide">
             <IdeText className="leading-6">{"{"}</IdeText>
             <div className="flex flex-col ps-4">
-                <motion.div {...animItem(0)}>
-                    {meta.map(([name, value]) => (
-                        <Property key={name} name={name} value={value} />
-                    ))}
-                </motion.div>
+                {meta.map(([name, value]) => (
+                    <Property key={name} name={name} value={value} />
+                ))}
 
-                <motion.div {...animItem(1)}>
-                    <IdeTextGroup tight brackets comma groupTitle={<IdeText className="leading-6"><Key>keywords</Key>:</IdeText>}>
-                        <IdeText className="leading-6 whitespace-normal">
-                            {keywords.map((kw, i) => (
-                                <span key={kw}>
-                                    <Value>{kw}</Value>
-                                    {i === keywords.length - 1 ? "" : ", "}
-                                </span>
-                            ))}
-                        </IdeText>
-                    </IdeTextGroup>
-                </motion.div>
+                <IdeTextGroup tight brackets comma groupTitle={<IdeText className="leading-6"><Key>keywords</Key>:</IdeText>}>
+                    <IdeText className="leading-6 whitespace-normal">
+                        {keywords.map((kw, i) => (
+                            <span key={kw}>
+                                <Value>{kw}</Value>
+                                {i === keywords.length - 1 ? "" : ", "}
+                            </span>
+                        ))}
+                    </IdeText>
+                </IdeTextGroup>
 
-                <motion.div {...animItem(2)}>
-                    <ObjectGroup title="dependencies" entries={dependencies} />
-                </motion.div>
-                <motion.div {...animItem(3)}>
-                    <ObjectGroup title="devDependencies" entries={devDependencies} />
-                </motion.div>
-                <motion.div {...animItem(4)}>
-                    <ObjectGroup title="scripts" entries={scripts} last />
-                </motion.div>
+                <ObjectGroup title="dependencies" entries={dependencies} />
+                <ObjectGroup title="devDependencies" entries={devDependencies} />
+                <ObjectGroup title="scripts" entries={scripts} last />
             </div>
             <IdeText className="leading-6">{"}"}</IdeText>
         </main>

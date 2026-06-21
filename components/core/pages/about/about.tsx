@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react"
 import { IdeComment, IdeText, IdeTextGroup, IdeTextHighlighted } from "../ideTextComponents";
 import { IdeRunnable } from "./ideRunnable";
 
@@ -10,11 +10,13 @@ const GREET = "olá, vamos construir algo?";
 export default function About() {
     const shouldReduce = useReducedMotion()
 
-    const animItem = (index: number) => ({
-        initial: shouldReduce ? undefined : { clipPath: 'inset(0 100% 0 0)' } as const,
-        animate: shouldReduce ? undefined : { clipPath: 'inset(0 0% 0 0)' } as const,
-        transition: shouldReduce ? undefined : { duration: 0.4, ease: 'easeOut' as const, delay: index * 0.1 },
-    })
+    function animItem(index: number) {
+        return {
+            initial: shouldReduce ? undefined : { clipPath: 'inset(0 100% 0 0)' as const },
+            animate: shouldReduce ? undefined : { clipPath: 'inset(0 0% 0 0)' as const },
+            transition: shouldReduce ? undefined : { duration: 0.4, ease: 'easeOut' as const, delay: index * 0.1 },
+        }
+    }
 
     return (
         <main className="flex flex-col w-full min-h-full gap-6 tracking-wide">

@@ -1,7 +1,6 @@
 "use client";
 
 import { ComponentProps, useRef, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
 import { IdeComment, IdeText, IdeTextHighlighted } from "../ideTextComponents";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -53,7 +52,6 @@ function ContactCard({ title, value, isEmail, isCopied, onCopyValue, className, 
 export default function Contact() {
     const [copiedValue, setCopiedValue] = useState<string | null>(null)
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
-    const shouldReduce = useReducedMotion()
 
     const handleCopy = async (value: string) => {
         await navigator.clipboard.writeText(value)
@@ -66,21 +64,15 @@ export default function Contact() {
     return (
         <main className="flex flex-col w-full gap-6">
             <IdeComment character="#">meus canais de contato:</IdeComment>
-            {CONTACT_DATA.map((contact, index) => (
-                <motion.div
+            {CONTACT_DATA.map((contact) => (
+                <ContactCard
                     key={contact.value}
-                    initial={shouldReduce ? undefined : { clipPath: 'inset(0 100% 0 0)' }}
-                    animate={shouldReduce ? undefined : { clipPath: 'inset(0 0% 0 0)' }}
-                    transition={shouldReduce ? undefined : { duration: 0.4, ease: 'easeOut', delay: index * 0.1 }}
-                >
-                    <ContactCard
-                        title={contact.title}
-                        value={contact.value}
-                        isEmail={contact.isEmail}
-                        isCopied={copiedValue === contact.value}
-                        onCopyValue={handleCopy}
-                    />
-                </motion.div>
+                    title={contact.title}
+                    value={contact.value}
+                    isEmail={contact.isEmail}
+                    isCopied={copiedValue === contact.value}
+                    onCopyValue={handleCopy}
+                />
             ))}
         </main>
     )

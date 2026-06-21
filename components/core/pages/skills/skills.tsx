@@ -5,17 +5,54 @@ import { IdeComment, IdeText, IdeTextGroup, IdeTextHighlighted } from "../ideTex
 import { Level } from "./level";
 
 const items: { name: string, value: number, comment?: string }[] = [
-    { name: "Typescript", value: 85 },
-    { name: "Python", value: 48, comment: "Cursando CS50P de Harvard" },
-    { name: "Dev com IA", value: 90, comment: "3x Anthropic Claude code and AI Fluency" },
-    { name: "AWS Cloud", value: 70, comment: "Em proceso para Cloud Practitioner." },
-    { name: "Git & CI/CD", value: 70 },
-    { name: "Inglês", value: 90, comment: "Nível C1" },
-    { name: "Node.js", value: 80 },
-    { name: "NestJs", value: 70 },
-    { name: "Docker", value: 65 },
-    { name: "React", value: 75 },
-    { name: "Postgres + ORMs", value: 75 },
+    {
+        name: "Typescript",
+        value: 85
+    },
+    {
+        name: "Python",
+        value: 48,
+        comment: "Cursando CS50P de Harvard"
+    },
+    {
+        name: "Dev com IA",
+        value: 90,
+        comment: "3x Anthropic Claude code and AI Fluency"
+    },
+    {
+        name: "AWS Cloud",
+        value: 70,
+        comment: "Em proceso para Cloud Practitioner."
+    },
+    {
+        name: "Git & CI/CD",
+        value: 70,
+    },
+    {
+        name: "Inglês",
+        value: 90,
+        comment: "Nível C1"
+    },
+    {
+        name: "Node.js",
+        value: 80
+    },
+    {
+        name: "NestJs",
+        value: 70
+    },
+    {
+        name: "Docker",
+        value: 65
+    },
+    {
+        name: "React",
+        value: 75
+    },
+    {
+        name: "Postgres + ORMs",
+        value: 75
+    },
 ]
 
 export default function Skills() {
