@@ -35,17 +35,17 @@ export default function About() {
                 <motion.div {...animItem(2)}>
                     <IdeTextGroup curlyBrackets groupTitle={<IdeText><b>export class</b> Victor <b>implements</b> Engineer</IdeText>}>
                         <IdeText>
-                            name     = <IdeTextHighlighted variant={"dotted"}>"Victor Santos"</IdeTextHighlighted> {"\n"}
-                            role     = <IdeTextHighlighted variant={"dotted"}>"Software Engineer"</IdeTextHighlighted> {"\n"}
-                            location = <IdeTextHighlighted variant={"dotted"}>"Brasil"</IdeTextHighlighted> {"\n"}
+                            name     = <IdeTextHighlighted variant={"dotted"}>{'"'}Victor Santos{'"'}</IdeTextHighlighted> {"\n"}
+                            role     = <IdeTextHighlighted variant={"dotted"}>{'"'}Software Engineer{'"'}</IdeTextHighlighted> {"\n"}
+                            location = <IdeTextHighlighted variant={"dotted"}>{'"'}Brasil{'"'}</IdeTextHighlighted> {"\n"}
                             {"\n"}
                             <IdeComment>o que me move</IdeComment> {"\n"}
                             <IdeTextGroup brackets groupTitle={<IdeText>passions =</IdeText>}>
                                 <IdeTextHighlighted variant={"dotted"}>
-                                    "construir sistemas que escalam", {"\n"}
-                                    "arquitetura limpa e pragmática", {"\n"}
-                                    "aprender continuamente", {"\n"}
-                                    "código que outros conseguem ler", {"\n"}
+                                    {'"'}construir sistemas que escalam{'"'}, {"\n"}
+                                    {'"'}arquitetura limpa e pragmática{'"'}, {"\n"}
+                                    {'"'}aprender continuamente{'"'}, {"\n"}
+                                    {'"'}código que outros conseguem ler{'"'}, {"\n"}
                                 </IdeTextHighlighted>
                             </IdeTextGroup>
                         </IdeText>
