@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "motion/react"
 import { IdeComment, IdeText, IdeTextGroup, IdeTextHighlighted } from "../ideTextComponents";
 import { IdeRunnable } from "./ideRunnable";
+import { clipReveal } from "../anim";
 
 const BIO = "Me chamo Victor Santos, e adoro tecnologia. Comecei bem cedo a me interessar pela área, e hoje, venho me desenvolvendo como programador fullstack.";
 const GREET = "olá, vamos construir algo?";
@@ -10,21 +11,13 @@ const GREET = "olá, vamos construir algo?";
 export default function About() {
     const shouldReduce = useReducedMotion()
 
-    function animItem(index: number) {
-        return {
-            initial: shouldReduce ? undefined : { clipPath: 'inset(0 100% 0 0)' as const },
-            animate: shouldReduce ? undefined : { clipPath: 'inset(0 0% 0 0)' as const },
-            transition: shouldReduce ? undefined : { duration: 0.4, ease: 'easeOut' as const, delay: index * 0.1 },
-        }
-    }
-
     return (
         <main className="flex flex-col w-full min-h-full gap-6 tracking-wide">
-            <motion.div {...animItem(0)}>
+            <motion.div {...clipReveal(0, shouldReduce)}>
                 <IdeComment>Quem sou? Leia o código abaixo.</IdeComment>
             </motion.div>
             <section className="flex flex-col gap-4 max-w-full md:max-w-8/12">
-                <motion.div {...animItem(1)}>
+                <motion.div {...clipReveal(1, shouldReduce)}>
                     <IdeTextGroup curlyBrackets groupTitle={<IdeText><b>interface</b> Engineer</IdeText>}>
                         <IdeText>
                             name: string  {"\n"}
@@ -34,7 +27,7 @@ export default function About() {
                         </IdeText>
                     </IdeTextGroup>
                 </motion.div>
-                <motion.div {...animItem(2)}>
+                <motion.div {...clipReveal(2, shouldReduce)}>
                     <IdeTextGroup curlyBrackets groupTitle={<IdeText><b>export class</b> Victor <b>implements</b> Engineer</IdeText>}>
                         <IdeText>
                             name     = <IdeTextHighlighted variant={"dotted"}>{'"'}Victor Santos{'"'}</IdeTextHighlighted> {"\n"}
