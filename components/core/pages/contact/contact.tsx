@@ -1,9 +1,11 @@
 "use client";
 
 import { ComponentProps, useRef, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { IdeComment, IdeText, IdeTextHighlighted } from "../ideTextComponents";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { slideUp } from "../anim";
 import Link from "next/link";
 
 
@@ -52,6 +54,7 @@ function ContactCard({ title, value, isEmail, isCopied, onCopyValue, className, 
 export default function Contact() {
     const [copiedValue, setCopiedValue] = useState<string | null>(null)
     const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+    const shouldReduce = useReducedMotion()
 
     const handleCopy = async (value: string) => {
         await navigator.clipboard.writeText(value)
@@ -64,15 +67,19 @@ export default function Contact() {
     return (
         <main className="flex flex-col w-full gap-6">
             <IdeComment character="#">meus canais de contato:</IdeComment>
-            {CONTACT_DATA.map((contact) => (
-                <ContactCard
+            {CONTACT_DATA.map((contact, index) => (
+                <motion.div
                     key={contact.value}
-                    title={contact.title}
-                    value={contact.value}
-                    isEmail={contact.isEmail}
-                    isCopied={copiedValue === contact.value}
-                    onCopyValue={handleCopy}
-                />
+                    {...slideUp(index, shouldReduce)}
+                >
+                    <ContactCard
+                        title={contact.title}
+                        value={contact.value}
+                        isEmail={contact.isEmail}
+                        isCopied={copiedValue === contact.value}
+                        onCopyValue={handleCopy}
+                    />
+                </motion.div>
             ))}
         </main>
     )

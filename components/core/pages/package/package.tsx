@@ -1,5 +1,9 @@
+"use client"
+
 import { ReactNode } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { IdeText, IdeTextGroup, IdeTextHighlighted } from "../ideTextComponents";
+import { clipReveal } from "../anim";
 
 const meta: [string, string][] = [
     ["name", "victor-santos"],
@@ -98,28 +102,40 @@ function ObjectGroup({
 }
 
 export default function Package() {
+    const shouldReduce = useReducedMotion()
+
     return (
         <main className="flex flex-col w-full min-h-full leading-6 tracking-wide">
             <IdeText className="leading-6">{"{"}</IdeText>
             <div className="flex flex-col ps-4">
-                {meta.map(([name, value]) => (
-                    <Property key={name} name={name} value={value} />
-                ))}
+                <motion.div {...clipReveal(0, shouldReduce)}>
+                    {meta.map(([name, value]) => (
+                        <Property key={name} name={name} value={value} />
+                    ))}
+                </motion.div>
 
-                <IdeTextGroup tight brackets comma groupTitle={<IdeText className="leading-6"><Key>keywords</Key>:</IdeText>}>
-                    <IdeText className="leading-6 whitespace-normal">
-                        {keywords.map((kw, i) => (
-                            <span key={kw}>
-                                <Value>{kw}</Value>
-                                {i === keywords.length - 1 ? "" : ", "}
-                            </span>
-                        ))}
-                    </IdeText>
-                </IdeTextGroup>
+                <motion.div {...clipReveal(1, shouldReduce)}>
+                    <IdeTextGroup tight brackets comma groupTitle={<IdeText className="leading-6"><Key>keywords</Key>:</IdeText>}>
+                        <IdeText className="leading-6 whitespace-normal">
+                            {keywords.map((kw, i) => (
+                                <span key={kw}>
+                                    <Value>{kw}</Value>
+                                    {i === keywords.length - 1 ? "" : ", "}
+                                </span>
+                            ))}
+                        </IdeText>
+                    </IdeTextGroup>
+                </motion.div>
 
-                <ObjectGroup title="dependencies" entries={dependencies} />
-                <ObjectGroup title="devDependencies" entries={devDependencies} />
-                <ObjectGroup title="scripts" entries={scripts} last />
+                <motion.div {...clipReveal(2, shouldReduce)}>
+                    <ObjectGroup title="dependencies" entries={dependencies} />
+                </motion.div>
+                <motion.div {...clipReveal(3, shouldReduce)}>
+                    <ObjectGroup title="devDependencies" entries={devDependencies} />
+                </motion.div>
+                <motion.div {...clipReveal(4, shouldReduce)}>
+                    <ObjectGroup title="scripts" entries={scripts} last />
+                </motion.div>
             </div>
             <IdeText className="leading-6">{"}"}</IdeText>
         </main>
