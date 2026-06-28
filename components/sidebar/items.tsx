@@ -15,6 +15,7 @@ import Package from "../core/pages/package/package"
 import Skills from "../core/pages/skills/skills"
 import StillDeveloping from "../core/developing"
 import Contact from "../core/pages/contact/contact"
+import Saturn from "../core/pages/saturn/saturn"
 
 
 
@@ -74,10 +75,10 @@ const root: Item[] = [
 const projects: Item[] = [
   {
     page: {
-      value: "Comprez",
-      component: <StillDeveloping />
+      value: "Saturn",
+      component: <Saturn />
     },
-    name: "comprez.tsx",
+    name: "saturn.tsx",
     icon: ReactIcon,
   },
 ]
