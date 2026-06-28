@@ -25,10 +25,10 @@ export const fileCards = fileCardSchema.parse([
         description: "Stack, ferramentas e mais.",
     },
     {
-        page: "Comprez",
-        kicker: "Projects/Comprez.tsx",
-        title: "Projetos",
-        description: "Veja meu mais recente projeto.",
+        page: "Saturn",
+        kicker: "projects/saturn.tsx",
+        title: "Saturn",
+        description: "Compressor de vídeo em nuvem na AWS.",
     },
     {
         page: "Contact",
