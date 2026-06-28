@@ -87,19 +87,19 @@ export default function Saturn() {
 
             <section className="flex flex-col gap-3">
                 <motion.div {...slideUp(3, shouldReduce)}>
-                    <IdeComment>destaques</IdeComment>
+                    <IdeComment>preview ↓</IdeComment>
                 </motion.div>
                 <motion.div {...slideUp(4, shouldReduce)}>
-                    <Highlights items={HIGHLIGHTS} />
+                    <ProjectCard project={SATURN} />
                 </motion.div>
             </section>
 
             <section className="flex flex-col gap-3">
                 <motion.div {...slideUp(5, shouldReduce)}>
-                    <IdeComment>preview ↓</IdeComment>
+                    <IdeComment>destaques</IdeComment>
                 </motion.div>
                 <motion.div {...slideUp(6, shouldReduce)}>
-                    <ProjectCard project={SATURN} />
+                    <Highlights items={HIGHLIGHTS} />
                 </motion.div>
             </section>
 
