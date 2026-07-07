@@ -4,6 +4,7 @@ import {
   GithubIcon,
   Note01Icon,
   NpmIcon,
+  PythonIcon,
   ReactIcon,
   ThirdBracketSquareIcon,
   Typescript01Icon,
@@ -16,6 +17,7 @@ import Skills from "../core/pages/skills/skills"
 import StillDeveloping from "../core/developing"
 import Contact from "../core/pages/contact/contact"
 import Saturn from "../core/pages/saturn/saturn"
+import Ffmpyg from "../core/pages/ffmpyg/ffmpyg"
 
 
 
@@ -80,6 +82,14 @@ const projects: Item[] = [
     },
     name: "saturn.tsx",
     icon: ReactIcon,
+  },
+  {
+    page: {
+      value: "FFmpyg",
+      component: <Ffmpyg />
+    },
+    name: "ffmpyg.py",
+    icon: PythonIcon,
   },
 ]
 
