@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { IdeComment, IdeText, IdeTextHighlighted } from "../ideTextComponents";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { slideUp } from "../anim";
 import Link from "next/link";
 
 
@@ -69,9 +70,7 @@ export default function Contact() {
             {CONTACT_DATA.map((contact, index) => (
                 <motion.div
                     key={contact.value}
-                    initial={shouldReduce ? undefined : { y: 20, opacity: 0 }}
-                    animate={shouldReduce ? undefined : { y: 0, opacity: 1 }}
-                    transition={shouldReduce ? undefined : { duration: 0.4, ease: 'easeOut', delay: index * 0.1 }}
+                    {...slideUp(index, shouldReduce)}
                 >
                     <ContactCard
                         title={contact.title}

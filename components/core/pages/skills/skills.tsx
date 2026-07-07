@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "motion/react"
 import { IdeComment, IdeText, IdeTextGroup, IdeTextHighlighted } from "../ideTextComponents";
 import { Level } from "./level";
+import { barDelayMs, clipReveal } from "../anim";
 
 const items: { name: string, value: number, comment?: string }[] = [
     {
@@ -66,9 +67,7 @@ export default function Skills() {
                         <motion.div
                             className="flex flex-col gap-1"
                             key={item.name}
-                            initial={shouldReduce ? undefined : { clipPath: 'inset(0 100% 0 0)' }}
-                            animate={shouldReduce ? undefined : { clipPath: 'inset(0 0% 0 0)' }}
-                            transition={shouldReduce ? undefined : { duration: 0.4, ease: 'easeOut', delay: index * 0.1 }}
+                            {...clipReveal(index, shouldReduce)}
                         >
                             <IdeTextGroup curlyBrackets>
                                 <div className="flex gap-2 items-center max-sm:grid max-sm:grid-cols-[auto_1fr]">
@@ -78,7 +77,7 @@ export default function Skills() {
                                 </div>
                                 <div className="flex w-full gap-2 justify-between items-center">
                                     <IdeText className="whitespace-nowrap max-sm:hidden"><b>{item.name}</b></IdeText>
-                                    <Level className={"w-10/12"} value={item.value} delay={shouldReduce ? 0 : index * 100 + 100}>{item.value}</Level>
+                                    <Level className={"w-10/12"} value={item.value} delay={shouldReduce ? 0 : barDelayMs(index)}>{item.value}</Level>
                                 </div>
                             </IdeTextGroup>
                         </motion.div>
