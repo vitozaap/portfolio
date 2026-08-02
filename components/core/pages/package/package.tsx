@@ -31,7 +31,7 @@ const devDependencies: [string, string][] = [
 ];
 
 const scripts: [string, string][] = [
-    ["build", "vite build"],
+    ["build", "next build"],
     ["deploy", "aws s3 sync ..."],
     ["learn", "continuous"],
 ];
