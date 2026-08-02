@@ -12,18 +12,18 @@ const items: { name: string, value: number, comment?: string }[] = [
     },
     {
         name: "Python",
-        value: 48,
-        comment: "Cursando CS50P de Harvard"
+        value: 70,
+        comment: "CS50P de Harvard concluído"
     },
     {
         name: "Dev com IA",
         value: 90,
-        comment: "3x Anthropic Claude code and AI Fluency"
+        comment: "3 cursos da Anthropic Academy"
     },
     {
         name: "AWS Cloud",
-        value: 70,
-        comment: "Em proceso para Cloud Practitioner."
+        value: 78,
+        comment: "AWS Certified Cloud Practitioner (CLF-C02)"
     },
     {
         name: "Git & CI/CD",

@@ -63,7 +63,7 @@ export default function Readme() {
                     <TextCardTitle>tl;dr</TextCardTitle>
                     <TextCardDescription>
                         - typescript, node, react, next, nest, angular <br />
-                        - postgres, prisma, aws cloud, infra como código <br />
+                        - postgres, prisma, aws cloud, docker, ci/cd <br />
                         - arquiteta, escreve, deploya, mantém <br />
                         <br />
                         <div className="flex gap-1">

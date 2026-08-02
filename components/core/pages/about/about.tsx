@@ -32,7 +32,7 @@ export default function About() {
                         <IdeText>
                             name     = <IdeTextHighlighted variant={"dotted"}>{'"'}Victor Santos{'"'}</IdeTextHighlighted> {"\n"}
                             role     = <IdeTextHighlighted variant={"dotted"}>{'"'}Software Engineer{'"'}</IdeTextHighlighted> {"\n"}
-                            location = <IdeTextHighlighted variant={"dotted"}>{'"'}Brasil{'"'}</IdeTextHighlighted> {"\n"}
+                            location = <IdeTextHighlighted variant={"dotted"}>{'"'}São Paulo, Brasil{'"'}</IdeTextHighlighted> {"\n"}
                             {"\n"}
                             <IdeComment>o que me move</IdeComment> {"\n"}
                             <IdeTextGroup brackets groupTitle={<IdeText>passions =</IdeText>}>
