@@ -10,7 +10,7 @@ export const pagesEnum = z.enum([
   "About",
   "Skills",
   "Package",
-  "Saturn",
+  "Squish",
   "FFmpyg",
   "Git",
 ])

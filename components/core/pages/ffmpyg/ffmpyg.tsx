@@ -9,8 +9,8 @@ import {
 } from "@hugeicons/core-free-icons"
 import { IdeComment, IdeText, IdeTextGroup, IdeTextHighlighted } from "../ideTextComponents"
 import { clipReveal, slideUp } from "../anim"
-import { ProjectCard, type Project } from "../saturn/projectCard"
-import { Highlights, type Highlight } from "../saturn/highlights"
+import { ProjectCard, type Project } from "../project/projectCard"
+import { Highlights, type Highlight } from "../project/highlights"
 
 const FFMPYG: Project = {
     name: "FFmpyg",
@@ -20,7 +20,7 @@ const FFMPYG: Project = {
     summary:
         "CLI em Python que embrulha o FFmpeg para comprimir vídeos sem decorar flags: presets high/mid/low ajustam o CRF do libx264, com fast mode via argumentos ou wizard interativo com barra de progresso em tempo real.",
     role: "Autor — projeto final do CS50P (Harvard).",
-    url: "https://github.com/vitozaap/cs50-python-final-project",
+    links: [{ label: "→ repo no github", href: "https://github.com/vitozaap/cs50-python-final-project" }],
 }
 
 const HIGHLIGHTS: Highlight[] = [
@@ -67,7 +67,7 @@ export default function Ffmpyg() {
                         <b>import</b> subprocess {"\n"}
                         <b>from</b>{" "}
                         <IdeTextHighlighted variant="dotted">compressor</IdeTextHighlighted>{" "}
-                        <b>import</b> compress, probe_media
+                        <b>import</b>&nbsp;compress, probe_media
                     </IdeText>
                 </motion.div>
 

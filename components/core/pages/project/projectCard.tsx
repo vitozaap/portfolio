@@ -1,4 +1,12 @@
 import { ReactNode } from "react"
+import { cn } from "@/lib/utils"
+
+export interface ProjectLink {
+    label: string
+    href: string
+    // The primary link renders inverted — reserved for the live product, not a repo.
+    primary?: boolean
+}
 
 export interface Project {
     name: string
@@ -7,7 +15,7 @@ export interface Project {
     stack: string[]
     summary: string
     role: string
-    url: string
+    links: ProjectLink[]
 }
 
 function Field({ label, children }: { label: string; children: ReactNode }) {
@@ -55,15 +63,25 @@ export function ProjectCard({ project }: { project: Project }) {
                         ))}
                     </div>
                 </Field>
-                <Field label="Repositório">
-                    <a
-                        href={project.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex w-max items-center gap-1.5 border-2 border-foreground px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider transition-colors hover:bg-foreground hover:text-background"
-                    >
-                        → repo no github
-                    </a>
+                <Field label="Links">
+                    <div className="flex flex-wrap gap-1.5">
+                        {project.links.map((link) => (
+                            <a
+                                key={link.href}
+                                href={link.href}
+                                target="_blank"
+                                rel="noreferrer"
+                                className={cn(
+                                    "inline-flex w-max items-center gap-1.5 border-2 border-foreground px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider transition-colors",
+                                    link.primary
+                                        ? "bg-foreground text-background hover:bg-background hover:text-foreground"
+                                        : "hover:bg-foreground hover:text-background"
+                                )}
+                            >
+                                {link.label}
+                            </a>
+                        ))}
+                    </div>
                 </Field>
             </dl>
         </div>
