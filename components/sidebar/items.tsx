@@ -14,10 +14,10 @@ import Readme from "../core/pages/readme/readme"
 import About from "../core/pages/about/about"
 import Package from "../core/pages/package/package"
 import Skills from "../core/pages/skills/skills"
-import StillDeveloping from "../core/developing"
 import Contact from "../core/pages/contact/contact"
 import Squish from "../core/pages/squish/squish"
 import Gitlogs from "../core/pages/gitlogs/gitlogs"
+import Certs from "../core/pages/certs/certs"
 import Ffmpyg from "../core/pages/ffmpyg/ffmpyg"
 
 
@@ -43,7 +43,7 @@ const root: Item[] = [
   {
     page: {
       value: "Certs",
-      component: <StillDeveloping />
+      component: <Certs />
     },
     name: "certs.yml",
     icon: Flag02Icon
