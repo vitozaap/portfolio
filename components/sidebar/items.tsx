@@ -16,7 +16,7 @@ import Package from "../core/pages/package/package"
 import Skills from "../core/pages/skills/skills"
 import StillDeveloping from "../core/developing"
 import Contact from "../core/pages/contact/contact"
-import Saturn from "../core/pages/saturn/saturn"
+import Squish from "../core/pages/squish/squish"
 import Ffmpyg from "../core/pages/ffmpyg/ffmpyg"
 
 
@@ -77,10 +77,10 @@ const root: Item[] = [
 const projects: Item[] = [
   {
     page: {
-      value: "Saturn",
-      component: <Saturn />
+      value: "Squish",
+      component: <Squish />
     },
-    name: "saturn.tsx",
+    name: "squish.tsx",
     icon: ReactIcon,
   },
   {
