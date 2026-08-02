@@ -17,6 +17,7 @@ import Skills from "../core/pages/skills/skills"
 import StillDeveloping from "../core/developing"
 import Contact from "../core/pages/contact/contact"
 import Squish from "../core/pages/squish/squish"
+import Gitlogs from "../core/pages/gitlogs/gitlogs"
 import Ffmpyg from "../core/pages/ffmpyg/ffmpyg"
 
 
@@ -97,9 +98,9 @@ const git: Item[] = [
   {
     page: {
       value: "Git",
-      component: <StillDeveloping />
+      component: <Gitlogs />
     },
-    name: ".gitlogs ",
+    name: ".gitlogs",
     icon: GithubIcon,
   },
 ]
