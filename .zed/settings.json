@@ -1,0 +1,43 @@
+// Configurações do Zed para este projeto: Biome no lugar de Prettier/ESLint.
+// Requer a extensão "biome" do Zed; ela usa o binário de node_modules/@biomejs/biome.
+{
+  "format_on_save": "on",
+  "prettier": {
+    "allowed": false
+  },
+  "languages": {
+    "JavaScript": {
+      "language_servers": ["biome", "!eslint", "..."],
+      "formatter": { "language_server": { "name": "biome" } },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true
+      }
+    },
+    "TypeScript": {
+      "language_servers": ["biome", "!eslint", "..."],
+      "formatter": { "language_server": { "name": "biome" } },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true
+      }
+    },
+    "TSX": {
+      "language_servers": ["biome", "!eslint", "..."],
+      "formatter": { "language_server": { "name": "biome" } },
+      "code_actions_on_format": {
+        "source.fixAll.biome": true
+      }
+    },
+    "JSON": {
+      "language_servers": ["biome", "..."],
+      "formatter": { "language_server": { "name": "biome" } }
+    },
+    "JSONC": {
+      "language_servers": ["biome", "..."],
+      "formatter": { "language_server": { "name": "biome" } }
+    },
+    "CSS": {
+      "language_servers": ["biome", "..."],
+      "formatter": { "language_server": { "name": "biome" } }
+    }
+  }
+}

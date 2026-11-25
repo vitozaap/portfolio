@@ -1,18 +1,18 @@
-import { Button } from "@/components/ui/button"
-
+import { Section } from "./components/section"
+import { ThemeSwitcher } from "./components/theme-switcher"
+import { Paragraph, Subtitle, Title } from "./components/typography"
 export function App() {
   return (
-    <div className="flex min-h-svh p-6">
-      <div className="flex max-w-md min-w-0 flex-col gap-4 text-sm leading-loose">
-        <div>
-          <h1 className="font-medium">Project ready!</h1>
-          <p>You may now add components and start building.</p>
-          <p>We&apos;ve already added the button component for you.</p>
-          <Button className="mt-2">Button</Button>
-        </div>
-        <div className="font-mono text-xs text-muted-foreground">
-          (Press <kbd>d</kbd> to toggle dark mode)
-        </div>
+    <div className="flex min-h-svh p-2 items-center flex-col">
+      <div className="w-full p-2 h-min">
+        <ThemeSwitcher />
+      </div>
+      <div className="flex flex-col w-1/2 border border-blue-400 gap-6">
+        <Section>
+          <Title>Title placeholder</Title>
+          <Subtitle>Subtitle placeholder</Subtitle>
+          <Paragraph>Paragraph placeholder</Paragraph>
+        </Section>
       </div>
     </div>
   )
