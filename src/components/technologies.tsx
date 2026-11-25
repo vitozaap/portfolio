@@ -4,7 +4,6 @@ import { bullmqIcon } from "./icons/bullmq"
 type Technology = {
   name: string
   icon: string | IconifyIcon
-  color?: string
 }
 
 export const technologies: Technology[] = [
@@ -24,11 +23,7 @@ export const technologies: Technology[] = [
   { name: "PostgreSQL", icon: "logos:postgresql" },
   { name: "MySQL", icon: "logos:mysql-icon" },
   { name: "Java", icon: "logos:java" },
-  {
-    name: "Amazon Web Services",
-    icon: "simple-icons:amazonwebservices",
-    color: "#FF9900",
-  },
+  { name: "Amazon Web Services", icon: "simple-icons:amazonwebservices" },
   { name: "Python", icon: "logos:python" },
   { name: "Spring Boot", icon: "logos:spring-icon" },
   { name: "Claude Code", icon: "logos:claude-code" },

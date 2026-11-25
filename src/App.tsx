@@ -79,9 +79,9 @@ export function App() {
             desenvolvidos dentro e fora de minha vida acadêmica:
           </Paragraph>
           <div className="flex flex-wrap gap-2">
-            {technologies.map(({ name, icon, color }) => (
+            {technologies.map(({ name, icon }) => (
               <Badge key={name} variant={"outline"}>
-                <Icon icon={icon} color={color} data-icon="inline-start" />
+                <Icon icon={icon} data-icon="inline-start" />
                 {name}
               </Badge>
             ))}
