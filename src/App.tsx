@@ -13,6 +13,15 @@ import Me from "./assets/me.jpeg"
 import { FaAws } from "react-icons/fa"
 import { Button } from "./components/ui/button"
 import { technologies } from "./components/technologies"
+import { projects, statusClassName } from "./components/projects"
+import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemHeader,
+  ItemMedia,
+  ItemTitle,
+} from "./components/ui/item"
 
 export function App() {
   return (
@@ -34,7 +43,7 @@ export function App() {
             <Button
               variant={"link"}
               className={
-                "font-heading text-xl p-0! font-semibold text-blue-500 dark:text-blue-400"
+                "font-heading text-lg p-0! font-semibold text-blue-500 dark:text-blue-400"
               }
             >
               <a
@@ -84,6 +93,39 @@ export function App() {
                 <Icon icon={icon} data-icon="inline-start" />
                 {name}
               </Badge>
+            ))}
+          </div>
+        </Section>
+        <Section>
+          <Subtitle>PROJETOS</Subtitle>
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+            {projects.map(({ title, about, status, icon, url }) => (
+              <Item
+                key={title}
+                variant="outline"
+                className="items-start"
+                render={
+                  <a href={url} target="_blank" rel="noopener noreferrer">
+                    <ItemHeader className="justify-start">
+                      <ItemMedia className="size-7 rounded-md border">
+                        <Icon
+                          icon={icon ? icon : "simple-icons:github"}
+                          width={16}
+                        />
+                      </ItemMedia>
+                      <ItemTitle className="font-heading">
+                        {title}
+                        <Badge className={statusClassName[status]}>
+                          {status}
+                        </Badge>
+                      </ItemTitle>
+                    </ItemHeader>
+                    <ItemContent>
+                      <ItemDescription>{about}</ItemDescription>
+                    </ItemContent>
+                  </a>
+                }
+              />
             ))}
           </div>
         </Section>
