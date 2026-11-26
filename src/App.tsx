@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { Section } from "./components/section"
 import { ThemeSwitcher } from "./components/theme-switcher"
 import { Paragraph, Subtitle, Title } from "./components/typography"
@@ -22,8 +23,26 @@ import {
   ItemMedia,
   ItemTitle,
 } from "./components/ui/item"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs"
+import Education from "./components/education"
+import Career from "./components/career"
 
 export function App() {
+  const educationRef = useRef<HTMLDivElement>(null)
+
+  function scrollToEducation() {
+    // Aguarda o painel montar caso a aba ativa fosse outra
+    requestAnimationFrame(() => {
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches
+      educationRef.current?.scrollIntoView({
+        behavior: reduceMotion ? "auto" : "smooth",
+        block: "center",
+      })
+    })
+  }
+
   return (
     <div className="flex min-h-svh p-2 items-center flex-col">
       <div className="w-full p-2 min-h-28">
@@ -128,6 +147,26 @@ export function App() {
               />
             ))}
           </div>
+        </Section>
+        <Section>
+          <Subtitle>trajetória</Subtitle>
+
+          <Tabs defaultValue={"education"}>
+            <TabsList>
+              <TabsTrigger value={"education"} onClick={scrollToEducation}>
+                Educação
+              </TabsTrigger>
+              <TabsTrigger value={"career"}>Carreira</TabsTrigger>
+            </TabsList>
+            <div className="flex flex-col gap-2 w-full">
+              <TabsContent value={"education"} ref={educationRef}>
+                <Education />
+              </TabsContent>
+              <TabsContent value={"career"}>
+                <Career />
+              </TabsContent>
+            </div>
+          </Tabs>
         </Section>
       </div>
     </div>
