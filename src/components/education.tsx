@@ -146,9 +146,9 @@ function InProgressCard({
       </CardHeader>
       <CardContent className="flex flex-col gap-2">
         <Progress
-          value={progress}
+          value={progress ?? 0}
           aria-label={`Progresso em ${title}`}
-          className="[&_[data-slot=progress-indicator]]:bg-amber-500 [&_[data-slot=progress-track]]:h-1.5"
+          className="**:data-[slot=progress-indicator]:bg-amber-500 **:data-[slot=progress-track]:h-1.5"
         />
         <p className="text-muted-foreground">
           {description ?? `${progress}% concluído · ${date}`}

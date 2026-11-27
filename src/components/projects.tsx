@@ -1,4 +1,13 @@
-import type { IconifyIcon } from "@iconify/react"
+import { Icon, type IconifyIcon } from "@iconify/react"
+import {
+  Item,
+  ItemContent,
+  ItemDescription,
+  ItemHeader,
+  ItemMedia,
+  ItemTitle,
+} from "./ui/item"
+import { Badge } from "./ui/badge"
 
 type Status = "Ativo" | "Desenvolvimento" | "Finalizado" | "Manutenção"
 
@@ -23,27 +32,53 @@ export const projects: Project[] = [
     about:
       "Compressor de vídeo web com processamento em nuvem. Redução de tamanho de arquivo em até -90%",
     status: "Ativo",
-    url: "https://github.com/vitozaap/saturn-api"
+    url: "https://github.com/vitozaap/saturn-api",
   },
   {
     title: "Modelo N-grama",
     about:
       "Modelo capaz de prever palavras dado um contexto usando grafos e treinado com contexto de PDFs.",
     status: "Finalizado",
-    url: "https://github.com/vitozaap/ngrama"
+    url: "https://github.com/vitozaap/ngrama",
   },
   {
     title: "Portfolio",
     about:
       "Este portfólio que está vendo :). Dê uma olhada em seu código fonte.",
     status: "Ativo",
-    url: "https://github.com/vitozaap/portfolio"
+    url: "https://github.com/vitozaap/portfolio",
   },
   {
     title: "Ffmpeg CLI Wrapper",
     about:
       "Wrapper em formato CLI do ffmpeg feito em python capaz de converter e comprimir arquivos de vídeo. Usei como projeto final do curso de Harvard.",
     status: "Manutenção",
-    url: "https://github.com/vitozaap/cs50-python-final-project"
+    url: "https://github.com/vitozaap/cs50-python-final-project",
   },
 ]
+
+export default function Projects() {
+  return projects.map(({ title, about, status, icon, url }) => (
+    <Item
+      key={title}
+      variant="outline"
+      className="items-start"
+      render={
+        <a href={url} target="_blank" rel="noopener noreferrer">
+          <ItemHeader className="justify-start">
+            <ItemMedia className="size-7 rounded-md border">
+              <Icon icon={icon ? icon : "simple-icons:github"} width={16} />
+            </ItemMedia>
+            <ItemTitle className="font-heading">
+              {title}
+              <Badge className={statusClassName[status]}>{status}</Badge>
+            </ItemTitle>
+          </ItemHeader>
+          <ItemContent>
+            <ItemDescription>{about}</ItemDescription>
+          </ItemContent>
+        </a>
+      }
+    />
+  ))
+}

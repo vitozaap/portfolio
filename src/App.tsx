@@ -26,6 +26,7 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs"
 import Education from "./components/education"
 import Career from "./components/career"
+import Social from "./components/social"
 
 export function App() {
   const educationRef = useRef<HTMLDivElement>(null)
@@ -118,34 +119,7 @@ export function App() {
         <Section>
           <Subtitle>PROJETOS</Subtitle>
           <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-            {projects.map(({ title, about, status, icon, url }) => (
-              <Item
-                key={title}
-                variant="outline"
-                className="items-start"
-                render={
-                  <a href={url} target="_blank" rel="noopener noreferrer">
-                    <ItemHeader className="justify-start">
-                      <ItemMedia className="size-7 rounded-md border">
-                        <Icon
-                          icon={icon ? icon : "simple-icons:github"}
-                          width={16}
-                        />
-                      </ItemMedia>
-                      <ItemTitle className="font-heading">
-                        {title}
-                        <Badge className={statusClassName[status]}>
-                          {status}
-                        </Badge>
-                      </ItemTitle>
-                    </ItemHeader>
-                    <ItemContent>
-                      <ItemDescription>{about}</ItemDescription>
-                    </ItemContent>
-                  </a>
-                }
-              />
-            ))}
+            
           </div>
         </Section>
         <Section>
@@ -167,6 +141,13 @@ export function App() {
               </TabsContent>
             </div>
           </Tabs>
+        </Section>
+        <Section>
+          <Subtitle>Social</Subtitle>
+          <Paragraph>Você pode me encontrar por aqui:</Paragraph>
+          <div className="flex flex-wrap gap-2">
+            <Social />
+          </div>
         </Section>
       </div>
     </div>
