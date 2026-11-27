@@ -14,15 +14,6 @@ import Me from "./assets/me.jpeg"
 import { FaAws } from "react-icons/fa"
 import { Button } from "./components/ui/button"
 import { technologies } from "./components/technologies"
-import { projects, statusClassName } from "./components/projects"
-import {
-  Item,
-  ItemContent,
-  ItemDescription,
-  ItemHeader,
-  ItemMedia,
-  ItemTitle,
-} from "./components/ui/item"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs"
 import Education from "./components/education"
 import Career from "./components/career"
